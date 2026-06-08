@@ -1,0 +1,83 @@
+@import '../../styles/variables';
+
+.navContainer {
+  background-color: #0b111e !important; // Mantém o fundo escuro do seu layout
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+// Estilo dos Links de Navegação (Páginas)
+.navLinkCustom {
+  font-size: 0.95rem;
+  color: #a0aec0 !important; 
+  padding: 0.6rem 1rem !important;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    color: $primary !important;
+    background-color: rgba($primary, 0.08);
+  }
+
+  &:global(.active) {
+    color: #ffffff !important;
+    background-color: rgba($primary, 0.15) !important;
+    font-weight: 600;
+  }
+}
+
+/* ==========================================================================
+   Ajuste Fino do Sininho (Ícone Branco + Balão Vermelho Corrigido)
+   ========================================================================== */
+
+// Botão invisível de notificações
+.notifBtn {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0.5rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  position: relative !important; // Crucial para o absolute do badge funcionar relativamente a ele
+  cursor: pointer;
+
+  // Garante que o sininho apareça em BRANCO e com tamanho correto
+  i {
+    color: #ffffff !important; // Mudado para branco puro
+    font-size: 1.3rem !important; // Tamanho ideal para visualização rápida
+    display: inline-block;
+    line-height: 1;
+  }
+}
+
+// Balão Vermelho "99+" com posicionamento cirúrgico
+.badgeCustom {
+  background-color: #ef4444 !important; // Vermelho vivo idêntico ao print
+  color: #ffffff !important;
+  font-size: 0.6rem !important;
+  font-weight: 700 !important;
+  padding: 0.15rem 0.3rem !important;
+  border: 2px solid #0b111e !important; // Borda de recorte para não misturar com o sino
+  border-radius: 50rem !important;
+  
+  // Posicionamento absoluto travado exatamente acima do ombro direito do sino
+  position: absolute !important;
+  top: 0px !important;
+  right: -2px !important;
+  transform: translate(10%, -20%) !important;
+}
+
+// Menu Dropdown das Notificações
+.dropdownMenuCustom {
+  background-color: #111827 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+
+  :global(.dropdown-item) {
+    color: #e2e8f0 !important;
+    &:hover {
+      background-color: rgba($primary, 0.15) !important;
+      color: $primary !important;
+    }
+  }
+}

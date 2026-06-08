@@ -1,1 +1,22 @@
-// Ponto de entrada do CSS global
+// Ponto de entrada do CSS global// ==========================================================================
+
+// 1. Importo primeiro as minhas variáveis globais e definições de cores.
+// Eu faço isso logo no topo porque nenhum estilo subsequente (incluindo o próprio Bootstrap) 
+// pode ser processado sem antes conhecer a minha paleta de cores escura e o azul elétrico.
+@import 'variables';
+
+// 2. Importo a ponte de integração do Bootstrap.
+// Aqui, o motor do Bootstrap absorve as configurações do arquivo de variáveis que criei acima 
+// e gera todo o CSS utilitário customizado que vou usar nas minhas telas.
+@import 'bootstrap';
+//
+@import "bootstrap-icons/font/bootstrap-icons.css";
+// 3. Estilos Globais de Elementos Raiz
+// Decidi centralizar aqui pequenas regras de comportamento que afetam a experiência do app inteiro.
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth; // Garante uma rolagem fluida e suave ao navegar pelas seções
+  overflow-x: hidden;      // Engenharia preventiva: evita quebras de layout com barras de rolagem horizontais no mobile
+}

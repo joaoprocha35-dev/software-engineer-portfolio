@@ -1,0 +1,156 @@
+// ==========================================================================
+// ESTILIZAÇÃO DO COMPONENTE DE CONTATO (CSS MODULES + SCSS)
+// ==========================================================================
+
+@import '../../styles/variables';
+
+$glass-bg: rgba(255, 255, 255, 0.03);
+$glass-border: rgba(255, 255, 255, 0.08);
+
+.contatoSection {
+  padding: 80px 20px;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.infoBlock {
+  .subtitle {
+    color: $electric-blue; 
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .title {
+    color: $text-primary; 
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .description {
+    color: $text-secondary; 
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+  }
+
+  // CONTAINER DOS ÍCONES
+  .socialLinks {
+    display: flex;
+    gap: 16px;
+
+    // ESTILO DOS CARDS DE ÍCONES (IGUAL À IMAGEM SOLICITADA)
+    .iconCard {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px; // Cantos suavizados identicos ao print
+      color: #94a3b8; // Cor neutra padrão fosca
+      font-size: 1.25rem; // Tamanho ideal para o SVG interno
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+
+      svg {
+        transition: transform 0.3s ease;
+      }
+
+      // Efeito de Interação de alto nível
+      &:hover {
+        color: $electric-blue; // Ícone acende com a sua cor temática
+        background: rgba(77, 166, 255, 0.05); // Fundo ganha brilho sutil azulado
+        border-color: rgba(77, 166, 255, 0.3); // Borda destaca-se no hover
+        transform: translateY(-3px); // Leve flutuação para feedback tátil
+        box-shadow: 0 8px 20px rgba(77, 166, 255, 0.15);
+
+        svg {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}
+
+.glassCard {
+  background: $glass-bg;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid $glass-border;
+  border-radius: $border-radius; 
+  padding: 40px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+
+  :global {
+    .form-control {
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid $glass-border;
+      color: $text-primary;
+      padding: 12px 16px;
+      border-radius: 8px;
+      transition: $transition-base;
+
+      &:focus {
+        background: rgba(0, 0, 0, 0.4);
+        border-color: $electric-blue;
+        box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.25); 
+        color: $text-primary;
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+    
+    .form-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.btnSubmit {
+  background: $electric-blue;
+  color: $dark-bg-main; 
+  border: none;
+  padding: 12px 32px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: $transition-base;
+  box-shadow: 0 4px 14px rgba(77, 166, 255, 0.3);
+
+  &:hover {
+    background: $electric-blue-hover;
+    color: $text-primary; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(51, 140, 217, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 991.98px) {
+  .infoBlock {
+    text-align: center;
+    margin-bottom: 20px;
+    
+    .socialLinks {
+      justify-content: center;
+    }
+  }
+  
+  .glassCard {
+    padding: 25px;
+  }
+}

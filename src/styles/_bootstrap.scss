@@ -1,1 +1,11 @@
-// Importação customizada dos módulos do Bootstrap
+// INTEGRAÇÃO DO MOTOR DO BOOTSTRAP COM AS MINHAS VARIÁVEIS
+
+// Aqui eu faço a importação oficial do código-fonte do Bootstrap v5 em formato SCSS.
+// Como a arquitetura do Sass processa o código de cima para baixo, o ecossistema do Bootstrap 
+// vai ler, herdar e injetar automaticamente todas as minhas variáveis personalizadas (como o azul elétrico e o fundo escuro).
+// Isso garante que classes nativas como 'container', 'row' e 'col' funcionem perfeitamente em harmonia com o meu design.
+@import "bootstrap/scss/bootstrap";
+
+// Optei por criar este arquivo isolado para que, se no futuro eu precisar estender 
+// alguma mixin ou função nativa do Bootstrap, eu tenha um ponto centralizado de modificação,
+// mantendo a arquitetura limpa e escalável.

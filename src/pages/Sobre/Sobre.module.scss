@@ -1,0 +1,607 @@
+@import '../../styles/variables';
+
+// ==========================================================================
+// 1. CONFIGURAÇÕES BASE E CONTAINER PRINCIPAL
+// ==========================================================================
+.sobreContainer {
+  background-color: #0b111e;
+  color: #fff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  padding: 60px 0;
+}
+
+.tituloPrincipal {
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: calc(2rem + 1.8vw); // Fonte perfeitamente fluida
+  text-shadow: 0 0 25px rgba(59, 130, 246, 0.25);
+  letter-spacing: -0.02em;
+}
+
+.linhaDecorativa {
+  width: 70px;
+  height: 4px;
+  background-color: #3b82f6;
+  margin: 14px auto 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+// ==========================================================================
+// 2. ESTRUTURA E LINHA DA TIMELINE (DESKTOP)
+// ==========================================================================
+.timeline {
+  position: relative;
+  max-width: 1400px;
+  margin: 90px auto 0 auto;
+  padding: 15px 0;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(59, 130, 246, 0.35) 10%, rgba(59, 130, 246, 0.35) 90%, transparent);
+    top: 380px; 
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+    z-index: 1;
+  }
+}
+
+.timelineItem {
+  position: relative;
+  margin-bottom: 140px;
+  width: 100%;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:first-child {
+    margin-bottom: 160px;
+  }
+}
+
+.timelineDot {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background-color: #3b82f6;
+  border: 4px solid #0b111e;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 5;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.8);
+}
+
+.contentRow {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 !important; 
+  padding: 0 !important;
+}
+
+// ==========================================================================
+// 3. BLOCOS DE TEXTO (CARDS DE INFORMAÇÕES)
+// ==========================================================================
+.textBlock {
+  padding: calc(24px + 1.2vw);
+  background: rgba(255, 255, 255, 0.012);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 24px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.45);
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 35px 70px rgba(59, 130, 246, 0.07);
+  }
+}
+
+.stepNumber {
+  font-size: calc(2.2rem + 1.2vw);
+  font-weight: 900;
+  color: rgba(59, 130, 246, 0.18);
+  display: block;
+  margin-bottom: 6px;
+  line-height: 1;
+}
+
+.itemTitulo {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: calc(1.3rem + 0.3vw);
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.timelineTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  .tag {
+    background: rgba(59, 130, 246, 0.06);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    color: #60a5fa;
+    padding: 6px 16px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 100px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(59, 130, 246, 0.4);
+    }
+  }
+}
+
+// ==========================================================================
+// 4. DESIGN ULTRA-WIDE E DESKTOP PREMIUM (FOTOS LARGAS E ALTAS)
+// ==========================================================================
+.imageWrapper {
+  width: 100%;
+  max-width: 420px; 
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  .journeyImage {
+    width: 100%;
+    height: 560px; 
+    object-fit: cover; 
+    object-position: center center; 
+    display: block;
+  }
+
+  &:hover {
+    transform: scale(1.025) rotate(0.5deg);
+    border-color: rgba(59, 130, 246, 0.35);
+    box-shadow: 0 40px 75px rgba(59, 130, 246, 0.22);
+  }
+}
+
+// Primeira foto movida cirurgicamente mais para a direita
+.firstImageWrapper {
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: 0; 
+  margin-bottom: 20px;
+  transform: translateX(25px); 
+
+  .journeyImage {
+    height: 440px; 
+    object-position: center center;
+  }
+
+  &:hover {
+    transform: translateX(25px) scale(1.025) rotate(0.5deg);
+  }
+}
+
+// Caso a primeira imagem fique em linhas pares (lado esquerdo), inverte o empurrão para a esquerda
+.timelineItem:nth-child(even) {
+  .firstImageWrapper {
+    margin-right: auto;
+    margin-left: 0;
+    transform: translateX(-25px);
+
+    &:hover {
+      transform: translateX(-25px) scale(1.025) rotate(0.5deg);
+    }
+  }
+}
+
+// ==========================================================================
+// 5. MASTER GRADE RESPONSIVIDADE
+// ==========================================================================
+
+// --- TELAS GIGANTES E MONITORES 4K (> 1600px) ---
+@media screen and (min-width: 1600px) {
+  .timeline {
+    &::after { top: 400px; } 
+  }
+  .imageWrapper {
+    max-width: 460px;
+    .journeyImage { height: 560px; }
+  }
+  .firstImageWrapper {
+    max-width: 680px;
+    transform: translateX(35px);
+    .journeyImage { height: 440px; }
+
+    &:hover { transform: translateX(35px) scale(1.025) rotate(0.5deg); }
+  }
+  .timelineItem:nth-child(even) {
+    .firstImageWrapper {
+      transform: translateX(-35px);
+      &:hover { transform: translateX(-35px) scale(1.025) rotate(0.5deg); }
+    }
+  }
+}
+
+// --- DESKTOPS PADRÃO (1200px até 1599px) ---
+@media screen and (max-width: 1599.98px) {
+  .timeline { 
+    max-width: 1140px; 
+    &::after { top: 360px; }
+  }
+  .imageWrapper { max-width: 400px; .journeyImage { height: 560px; } }
+  .firstImageWrapper { max-width: 560px; .journeyImage { height: 410px; } }
+}
+
+// --- LAPTOPS E IPADS HORIZONTAIS (992px até 1199px) ---
+@media screen and (max-width: 1199.98px) {
+  .timeline { 
+    max-width: 960px; 
+    &::after { top: 340px; }
+  }
+  .timelineItem { margin-bottom: 100px; }
+  .imageWrapper { max-width: 360px; .journeyImage { height: 520px; } }
+  .firstImageWrapper { 
+    max-width: 500px; 
+    transform: translateX(15px);
+    .journeyImage { height: 380px; }
+
+    &:hover { transform: translateX(15px) scale(1.025) rotate(0.5deg); }
+  }
+  .timelineItem:nth-child(even) {
+    .firstImageWrapper {
+      transform: translateX(-15px);
+      &:hover { transform: translateX(-15px) scale(1.025) rotate(0.5deg); }
+    }
+  }
+}
+
+// --- TABLETS EM PÉ, IPADS E PHABLETS (768px até 991px) ---
+@media screen and (max-width: 991.98px) {
+  .timeline {
+    margin: 50px auto 0 auto;
+    padding-left: 12px;
+    &::after { 
+      left: 24px; 
+      top: 480px; 
+    }
+  }
+
+  .timelineDot {
+    left: 24px !important;
+    top: 45px;
+    transform: translate(-50%, -50%);
+  }
+
+  .textBlock {
+    margin-left: 40px;
+    padding: 32px;
+  }
+
+  .imageWrapper {
+    margin-left: 40px;
+    width: calc(100% - 40px);
+    max-width: 100%;
+    border-radius: 24px;
+
+    .journeyImage {
+      width: 100%;
+      height: auto; 
+      aspect-ratio: 4 / 5; 
+      object-position: center center;
+    }
+  }
+
+  .firstImageWrapper {
+    margin-left: 40px !important;
+    margin-right: 0 !important;
+    width: calc(100% - 40px);
+    max-width: 100%;
+    transform: none !important;
+
+    .journeyImage {
+      height: 320px;
+    }
+    
+    &:hover { transform: scale(1.025) rotate(0.5deg) !important; }
+  }
+}
+
+// --- SMARTPHONES ULTRA-MODERNOS TELA GRANDE (640px até 767px) ---
+@media screen and (max-width: 767.98px) {
+  .timelineItem { margin-bottom: 80px; }
+  .timeline { 
+    padding-left: 6px; 
+    &::after { left: 18px; top: 430px; } 
+  }
+  .timelineDot { left: 18px !important; top: 40px; }
+
+  .textBlock {
+    margin-left: 32px;
+    padding: 26px;
+  }
+
+  .imageWrapper {
+    margin-left: 32px;
+    width: calc(100% - 32px);
+    
+    .journeyImage {
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-position: center center;
+    }
+  }
+
+  .firstImageWrapper {
+    margin-left: 32px !important;
+    margin-right: 0 !important;
+    width: calc(100% - 32px);
+    transform: none !important;
+    
+    .journeyImage {
+      height: 280px;
+    }
+
+    &:hover { transform: scale(1.025) rotate(0.5deg) !important; }
+  }
+}
+
+// --- SMARTPHONES INTERMEDIÁRIOS E POPULARES (481px até 639px) ---
+@media screen and (max-width: 639.98px) {
+  .timeline {
+    &::after { top: 410px; }
+  }
+  
+  .textBlock {
+    padding: 22px;
+  }
+
+  .imageWrapper {
+    border-radius: 20px;
+    .journeyImage {
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-position: center center;
+    }
+  }
+
+  .firstImageWrapper {
+    transform: none !important;
+    .journeyImage {
+      height: 250px;
+    }
+    &:hover { transform: scale(1.025) rotate(0.5deg) !important; }
+  }
+}
+
+// --- CELULARES PADRÃO E DISPOSITIVOS RETINA (376px até 480px) ---
+@media screen and (max-width: 480px) {
+  .tituloPrincipal { font-size: 2.2rem; }
+  
+  .timeline { 
+    padding-left: 4px; 
+    &::after { left: 16px; top: 390px; } 
+  }
+  .timelineDot { left: 16px !important; top: 35px; }
+
+  .textBlock {
+    margin-left: 28px;
+    padding: 20px;
+    border-radius: 18px;
+  }
+
+  .imageWrapper {
+    margin-left: 28px;
+    width: calc(100% - 28px);
+    border-radius: 18px;
+
+    .journeyImage {
+      height: auto;
+      aspect-ratio: 4 / 5; 
+      object-position: center center; 
+    }
+  }
+
+  .firstImageWrapper {
+    margin-left: 28px !important;
+    margin-right: 0 !important;
+    width: calc(100% - 28px);
+    transform: none !important;
+
+    .journeyImage {
+      height: 220px;
+    }
+    &:hover { transform: scale(1.025) rotate(0.5deg) !important; }
+  }
+}
+
+// --- CELULARES COMPACTOS E TELAS DOBRÁVEIS (320px até 375px) ---
+@media screen and (max-width: 375.98px) {
+  .timeline { 
+    padding-left: 0; 
+    &::after { left: 12px; top: 370px; } 
+  }
+  .timelineDot { left: 12px !important; top: 32px; }
+
+  .textBlock {
+    margin-left: 24px;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .itemTitulo { font-size: 1.25rem; }
+
+  .imageWrapper {
+    margin-left: 24px;
+    width: calc(100% - 24px);
+    border-radius: 14px;
+
+    .journeyImage {
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-position: center center;
+    }
+  }
+
+  .firstImageWrapper {
+    margin-left: 24px !important;
+    margin-right: 0 !important;
+    width: calc(100% - 24px);
+    transform: none !important;
+
+    .journeyImage {
+      height: 200px;
+    }
+    &:hover { transform: scale(1.025) rotate(0.5deg) !important; }
+  }
+}
+
+// --- DISPOSITIVOS ULTRA-MICRO (≤ 319px) ---
+@media screen and (max-width: 319.98px) {
+  .timeline {
+    &::after { top: 340px; }
+  }
+  .textBlock { padding: 15px; }
+  .imageWrapper { .journeyImage { height: 320px; } }
+  .firstImageWrapper { .journeyImage { height: 160px; } }
+}
+
+// ==========================================================================
+// 6. CARD DE CHAMADA PARA AÇÃO (CTA RECRUTADOR)
+// ==========================================================================
+.ctaCard {
+  position: relative;
+  width: 100%;
+  max-width: 750px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  border-radius: 24px;
+  padding: 40px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    transform: translateY(-5px);
+    box-shadow: 0 40px 80px rgba(59, 130, 246, 0.08);
+
+    .ctaGlow {
+      opacity: 0.15;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    .ctaBotao svg {
+      transform: translateX(6px);
+    }
+  }
+}
+
+.ctaGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  opacity: 0.08;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  transition: all 0.5s ease;
+}
+
+.ctaContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center; // CORRIGIDO AQUI: Alterado de 'text-center' para 'text-align: center'
+}
+
+.badgeTech {
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  padding: 6px 16px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 100px;
+  margin-bottom: 20px;
+}
+
+.ctaTitulo {
+  font-size: calc(1.5rem + 0.5vw);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.ctaTexto {
+  font-size: 1rem;
+  color: #94a3b8;
+  max-width: 540px;
+  text-align: center; // CORRIGIDO AQUI: Alterado de 'text-center' para 'text-align: center'
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.ctaBotao {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #3b82f6;
+  color: #ffffff;
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 14px;
+  text-decoration: none !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  svg {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background: #2563eb;
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
+    color: #ffffff;
+  }
+}
+
+// --- AJUSTE RESPONSIVO PARA TELAS MENORES ---
+@media screen and (max-width: 575.98px) {
+  .ctaCard {
+    padding: 30px 20px;
+    margin-left: 15px;
+    margin-right: 15px;
+    width: calc(100% - 30px);
+  }
+
+  .ctaTexto {
+    font-size: 0.95rem;
+  }
+
+  .ctaBotao {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 24px;
+  }
+}

@@ -1,1 +1,41 @@
-// Sobrescrita das variáveis do Bootstrap ($primary, $body-bg, etc)
+// ==========================================================================
+// CONFIGURAÇÕES GLOBAIS DE IDENTIDADE VISUAL (SCSS)
+// ==========================================================================
+
+// 1. Minha Paleta de Cores Personalizada
+// Escolhi esses tons cirurgicamente para dar um ar moderno, minimalista e focado em tecnologia (Dark Tech UI).
+$dark-bg-main: #0b111e;      // O fundo principal da tela (um azul profundo quase preto)
+$dark-bg-card: #151d2a;      // O fundo dos meus cards e containers (para criar contraste sobre o fundo principal)
+$electric-blue: #4da6ff;     // O azul vibrante usado nos links ativos, botões e barras de progresso
+$electric-blue-hover: #338cd9; // Tom ligeiramente mais escuro para o efeito de hover dos botões
+$text-primary: #ffffff;      // Texto principal (títulos) em branco puro para máxima legibilidade
+$text-secondary: #94a3b8;    // Texto secundário (parágrafos e descrições) em cinza azulado suave
+
+// 2. Sobrescrevendo o Sistema de Cores do Bootstrap 5
+// Aqui eu injeto as minhas próprias cores dentro do mapa nativo do Bootstrap.
+// Dessa forma, classes como 'btn-primary', 'bg-primary' ou 'text-primary' vão assumir automaticamente o meu azul elétrico.
+$primary: $electric-blue;
+$dark: $dark-bg-main;
+
+$theme-colors: (
+  "primary": $primary,
+  "dark": $dark,
+  "card-dark": $dark-bg-card
+);
+
+// 3. Customização de Cores Globais do Body
+// Evito ter que estilizar o background em cada página individual. 
+// Definindo aqui, o Bootstrap já aplica essa estrutura escura em todo o ecossistema do portifolio.
+$body-bg: $dark-bg-main;
+$body-color: $text-primary;
+
+// 4. Configurações de Tipografia e Layout que decidi padronizar
+// Mantendo bordas arredondadas e transições suaves para uma experiência rica de usuário (UI/UX).
+$font-family-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+$border-radius: 12px;        // Arredondamento padrão para os cards do portfólio e formulários
+$transition-base: all 0.3s ease-in-out; // Transição padrão para efeitos fluidos de hover
+
+// ... suas variáveis atuais ($primary, $dark, etc.)
+
+// Seta do Accordion customizada com a cor azul elétrico para fundo escuro
+$accordion-icon-custom: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%2300d2ff'><path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/></svg>");
