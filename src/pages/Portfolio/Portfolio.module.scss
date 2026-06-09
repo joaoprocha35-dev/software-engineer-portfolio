@@ -1,0 +1,696 @@
+@import '../../styles/variables';
+
+// ==========================================================================
+// 1. CONTAINER E ESTRUTURA DA PÁGINA
+// ==========================================================================
+.portfolioContainer {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.portfolioHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  max-width: 700px;
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}
+
+.carouselWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  perspective: 1000px; // Garante a profundidade do efeito 3D
+  margin-bottom: 40px;
+}
+
+// ==========================================================================
+// 2. CONFIGURAÇÃO DO SWIPER CUBE (TAMANHO FIXO/PROPORCIONAL)
+// ==========================================================================
+.cubeContainer {
+  width: 100%;
+  max-width: 450px; // Tamanho ideal para não quebrar o cubo no mobile
+  aspect-ratio: 1 / 1;
+  position: relative;
+
+  :global {
+    // Sobrescrevendo as cores de paginação e navegação do Swiper injetado
+    .swiper-button-next, .swiper-button-prev {
+      color: $electric-blue;
+      transform: scale(0.7);
+      transition: $transition-base;
+      &:hover { color: $electric-blue-hover; }
+    }
+    .swiper-pagination-bullet-active {
+      background: $electric-blue;
+    }
+  }
+}
+
+.mySwiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiperSlide {
+  background-position: center;
+  background-size: cover;
+  border-radius: $border-radius;
+  pointer-events: auto !important; // 💡 FORÇA o slide do Swiper a aceitar cliques do mouse.
+  transform-style: preserve-3d;    // 💡 GARANTE que a profundidade 3D seja respeitada pelo navegador.
+}
+
+// ==========================================================================
+// 3. CARDS DO CUBO & LAYOUTS INTERNOS
+// ==========================================================================
+.cardContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  cursor: pointer;
+  background-color: $dark-bg-card;
+  border-radius: $border-radius;
+  overflow: hidden;
+  z-index: 50;                  // 💡 COLOCA o seu card por cima de qualquer sombra interna fantasma do Swiper.
+  pointer-events: auto !important; // 💡 Garante recepção total de eventos de clique.
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.projectImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba($dark-bg-main, 0.95) 20%, rgba($dark-bg-main, 0.4) 60%, transparent 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 30px;
+  pointer-events: none; // Permite o clique passar para o container
+
+  .categoryBadge {
+    align-self: flex-start;
+    background-color: rgba($electric-blue, 0.15);
+    border: 1px solid rgba($electric-blue, 0.3);
+    color: $electric-blue;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+  }
+
+  .projectTitle {
+    font-size: 1.5rem;
+    color: $text-primary;
+    margin-bottom: 8px;
+  }
+
+  .projectDescription {
+    color: $text-secondary;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Animação Hint Click (Mãozinha indicativa)
+.clickHint {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba($dark-bg-main, 0.8);
+  border: 1px solid rgba($text-secondary, 0.2);
+  backdrop-filter: blur(4px);
+  padding: 6px 12px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $text-primary;
+  font-size: 0.75rem;
+  font-weight: 500;
+  animation: pulseHint 2s infinite ease-in-out;
+  pointer-events: none;
+
+  .hintIcon {
+    width: 16px;
+    height: 16px;
+    color: $electric-blue;
+  }
+}
+
+// ==========================================================================
+// 4. OVERLAY DO MODAL E COMPONENTE BACKDROP
+// ==========================================================================
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba($dark-bg-main, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background-color: $dark-bg-card;
+  border: 1px solid rgba($text-secondary, 0.1);
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  border-radius: $border-radius;
+  position: relative;
+  overflow-y: auto;
+  padding: 40px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($text-secondary, 0.3);
+    border-radius: 4px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: $transition-base;
+  line-height: 1;
+
+  &:hover {
+    color: $text-primary;
+    transform: scale(1.1);
+  }
+}
+
+// ==========================================================================
+// 5. ENGENHARIA DE DESIGN DO NOTEBOOK (LARGURA TOTAL SEM DISTORÇÃO)
+// ==========================================================================
+.notebookContainer {
+  width: 100%;
+  max-width: 550px;
+  margin: 0 auto 35px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notebookScreen {
+  width: 100%;
+  aspect-ratio: 16 / 10; // Mantém a proporção widescreen do laptop estável
+  background-color: #050505;
+  border-radius: 12px 12px 0 0;
+  position: relative;
+  box-shadow: inset 0 0 0 2px #333, 0 10px 20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.screenContent {
+  position: absolute;
+  top: 4%;
+  left: 3%;
+  right: 3%;
+  bottom: 6%;
+  background-color: #111;
+  
+  // 💡 A MÁGICA PARA IMAGENS LONGAS:
+  // Permite que o conteúdo vertical role para baixo sem quebrar a estrutura do notebook
+  overflow-y: auto; 
+  overflow-x: hidden;
+
+  // Estilização opcional para deixar a barra de rolagem interna bem fina e moderna
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba($electric-blue, 0.4); 
+    border-radius: 2px;
+  }
+}
+
+// Tag da imagem dentro da tela do notebook
+.screenContent img {
+  width: 100% !important;  // 💡 Ocupa 100% da largura do notebook, exatamente como você pediu
+  height: auto !important; // 💡 Altura se ajusta sozinha mantendo a proporção original (sem distorcer)
+  display: block;
+}
+
+.screenBezel {
+  position: absolute;
+  bottom: 1.5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #222;
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.notebookBase {
+  width: 116%;
+  height: 14px;
+  background: linear-gradient(to bottom, #e2e8f0 0%, #cbd5e1 30%, #94a3b8 100%);
+  border-radius: 0 0 8px 8px;
+  position: relative;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15%;
+    height: 4px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 4px 4px;
+  }
+}
+
+.trackpad {
+  position: absolute;
+  top: 1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22%;
+  height: 7px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 2px 2px 0 0;
+  background-color: rgba(#fff, 0.15);
+}
+// ==========================================================================
+// 6. DETALHES TEXTUAIS E ACTIONS DO PROJETO
+// ==========================================================================
+.projectInfo {
+  color: $text-primary;
+
+  .headerInfo {
+    margin-bottom: 25px;
+    border-bottom: 1px solid rgba($text-secondary, 0.1);
+    padding-bottom: 15px;
+
+    .category {
+      color: $electric-blue;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .title {
+      font-size: 2rem;
+      margin-top: 5px;
+      font-weight: 700;
+    }
+  }
+
+  .details, .techSection {
+    margin-bottom: 25px;
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: rgba($text-primary, 0.9);
+    }
+
+    p {
+      color: $text-secondary;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+  }
+}
+
+.badgeContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.techBadge {
+  background-color: $dark-bg-main;
+  border: 1px solid rgba($text-secondary, 0.2);
+  color: $text-secondary;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: $transition-base;
+
+  &:hover {
+    border-color: $electric-blue;
+    color: $electric-blue;
+    background-color: rgba($electric-blue, 0.05);
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: 35px;
+  
+  a {
+    flex: 1;
+    text-align: center;
+    padding: 12px 20px;
+    border-radius: $border-radius;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: $transition-base;
+  }
+}
+
+.btnPrimary {
+  background-color: $electric-blue;
+  color: $dark-bg-main !important; // Alto contraste
+  
+  &:hover {
+    background-color: $electric-blue-hover;
+    transform: translateY(-2px);
+  }
+}
+
+.btnSecondary {
+  background-color: transparent;
+  border: 1px solid rgba($text-secondary, 0.4);
+  color: $text-primary;
+
+  &:hover {
+    border-color: $text-primary;
+    background-color: rgba($text-primary, 0.05);
+    transform: translateY(-2px);
+  }
+}
+
+// ==========================================================================
+// 7. KEYFRAMES E ANIMAÇÕES
+// ==========================================================================
+@keyframes pulseHint {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+    box-shadow: 0 0 12px rgba($electric-blue, 0.3);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// ==========================================================================
+// 8. MEDIA QUERIES (RESPONSIVIDADE)
+// ==========================================================================
+@media (max-width: 576px) {
+  .portfolioHeader .title { font-size: 2rem; }
+  .modalContent { padding: 25px 15px; }
+  .actionButtons { flex-direction: column; }
+  .notebookBase { width: 106%; } // Ajuste sutil para evitar transbordar no mobile extremo
+}
+
+// ==========================================================================
+// 9. CARD CTA FINAL (PERSUASIVO PARA RECRUTADORES)
+// ==========================================================================
+.ctaCard {
+  background-color: $dark-bg-card;
+  border: 1px solid rgba($text-secondary, 0.1);
+  border-radius: 20px;
+  padding: 50px 30px;
+  max-width: 800px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba($electric-blue, 0.04) 0%, transparent 65%);
+    pointer-events: none;
+  }
+}
+
+.ctaBadge {
+  background-color: rgba($electric-blue, 0.1);
+  color: $electric-blue;
+  padding: 5px 14px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  display: inline-block;
+  margin-bottom: 20px;
+  border: 1px solid rgba($electric-blue, 0.2);
+}
+
+.ctaTitle {
+  font-size: 2.2rem;
+  color: $text-primary;
+  margin-bottom: 15px;
+  line-height: 1.2;
+  font-weight: 800;
+
+  span {
+    color: $electric-blue;
+    display: inline-block;
+  }
+}
+
+.ctaDescription {
+  font-size: 1rem;
+  color: $text-secondary;
+  max-width: 580px;
+  margin: 0 auto 35px auto;
+  line-height: 1.6;
+}
+
+.ctaButton {
+  background-color: $electric-blue;
+  color: $dark-bg-main !important;
+  border: none;
+  padding: 14px 35px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 16px rgba($electric-blue, 0.25);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  &:hover {
+    background-color: $electric-blue-hover;
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 12px 24px rgba($electric-blue, 0.35);
+
+    svg {
+      transform: translateX(4px);
+    }
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@media (max-width: 768px) {
+  .ctaCard {
+    padding: 35px 20px;
+    margin-top: 20px;
+  }
+  .ctaTitle {
+    font-size: 1.6rem;
+    span { display: block; }
+  }
+}
+
+// ==========================================================================
+// 10. AJUSTE DO BOTÃO FECHAR (RESPONSIVO)
+// ==========================================================================
+.modalContent {
+  position: relative; /* Garante que o botão absoluto se alinhe por aqui */
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  background: transparent;
+  border: none;
+  color: rgba(#ffffff, 0.7);
+  font-size: 2.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 9999; /* Garante que fique acima de qualquer elemento do notebook */
+  transition: color 0.2s ease, transform 0.2s ease;
+  padding: 5px 10px;
+
+  &:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+// Media query para garantir visibilidade perfeita no celular
+@media (max-width: 768px) {
+  .closeButton {
+    top: 15px;
+    right: 15px;
+    font-size: 2.2rem; /* Tamanho ideal para mobile */
+    color: #ffffff;    /* Força o branco total no celular para dar contraste */
+    background-color: rgba(0, 0, 0, 0.4); /* Fundo sutil para não sumir na imagem */
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 7px; /* Ajuste fino central do caractere × */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+// ==========================================================================
+// 11. CUSTOMIZAÇÃO SÊNIOR DA PAGINAÇÃO DO SWIPER (BOLINHAS)
+// ==========================================================================
+
+/* 💡 NOTA DE ARQUITETURA: 
+  Como o Swiper injeta as classes de paginação dinamicamente no DOM global,
+  usamos o modificador :global do CSS Modules para alcançar e reestilizar 
+  as bolinhas sem quebrar o escopo modular do arquivo.
+*/
+
+.cubeContainer {
+  :global {
+    // Alinhamento e espaçamento do container das bolinhas
+    .swiper-pagination {
+      bottom: -30px !important; // Empurra as bolinhas um pouco para baixo do cubo para não sobrepor
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px; // Espaçamento uniforme entre as bolinhas
+    }
+
+    // Estilo base de TODAS as bolinhas (Inativas)
+    .swiper-pagination-bullet {
+      width: 10px;
+      height: 10px;
+      background-color: #ffffff !important; // Cor base branca
+      opacity: 0.35 !important; // Fica discretamente opaca quando inativa
+      border-radius: 50%;
+      margin: 0 !important; // Reseta margens padrões do swiper para usar o gap do flex
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; // Transição suave de tamanho e cor
+      cursor: pointer;
+      position: relative;
+
+      // Aumenta a área de clique invisível (Melhor UX para dispositivos Mobile)
+      &::after {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+      }
+
+      // Efeito de hover nas bolinhas inativas
+      &:hover {
+        opacity: 0.7 !important;
+        transform: scale(1.2);
+      }
+    }
+
+    // Estilo da bolinha ATIVA (A face atual do cubo)
+    .swiper-pagination-bullet-active {
+      width: 28px !important; // Transforma a bolinha ativa em um "pílula" moderna (Pill effect)
+      border-radius: 100px !important;
+      background-color: $electric-blue !important; // Usa a cor principal do seu tema (azul elétrico)
+      opacity: 1 !important;
+      box-shadow: 0 0 12px rgba($electric-blue, 0.6); // Adiciona um brilho neon sutil ao redor dela
+    }
+  }
+}
+
+// Ajustes finos de responsividade para telas pequenas
+@media (max-width: 768px) {
+  .cubeContainer {
+    :global {
+      .swiper-pagination {
+        bottom: -25px !important;
+      }
+      .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+      }
+      .swiper-pagination-bullet-active {
+        width: 22px !important;
+      }
+    }
+  }
+}

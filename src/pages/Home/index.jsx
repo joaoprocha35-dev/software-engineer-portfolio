@@ -133,9 +133,9 @@ function Home() {
                   
                   <p className="text-white small mb-1 fw-medium">Competências Adicionais:</p>
                   <p className="text-muted small mb-1">• Prototipagem de Interfaces (Nível Intermediário)</p>
-                  <p className="text-muted small mb-1">• Engenharia de Prompts (Fundamentos)</p>
+                  <p className="text-muted small mb-1">• Engenharia de Prompts (Intermediário)</p>
                   <p className="text-muted small mb-1">• MySQL Workbench (Fundamentos)</p>
-                  <p className="text-muted small mb-0">• Regras de Negócio (Conhecimento Inicial)</p>
+                  <p className="text-muted small mb-0">• Regras de Negócio (Nível Intermediário)</p>
                 </div>
               </div>
             </div>

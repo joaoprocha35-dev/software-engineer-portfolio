@@ -1,1 +1,0 @@
-# Configurações globais de estilo (SCSS)

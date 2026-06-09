@@ -1,1 +1,0 @@
-# Templates de página (ex: MainLayout que junta Navbar + Conteúdo + Footer)

@@ -22,12 +22,11 @@ const Contact = () => {
         setLoading(true);
         setStatusMessage({ type: '', text: '' });
 
-        //chaves geradas no painel do EmailJS:
+        // Chaves geradas no painel do EmailJS:
         const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
         const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
         const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-        // Os nomes das propriedades aqui devem ser iguais às variáveis {{}} criadas no seu template
         const templateParams = {
             nome: formData.nome,
             assunto: formData.assunto,
@@ -138,7 +137,7 @@ const Contact = () => {
                             {/* Mensagem de Feedback para o Usuário */}
                             {statusMessage.text && (
                                 <div className="col-12">
-                                    <div className={`alert ${statusMessage.type === 'success' ? 'alert-success text-dark' : 'alert-danger'} d-block`} role="alert">
+                                    <div className={`alert ${statusMessage.type === 'success' ? 'alert-success' : 'alert-danger'} ${styles.alertMessage} d-block`} role="alert">
                                         {statusMessage.text}
                                     </div>
                                 </div>

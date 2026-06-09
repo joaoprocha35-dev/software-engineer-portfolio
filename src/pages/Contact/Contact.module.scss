@@ -44,7 +44,7 @@ $glass-border: rgba(255, 255, 255, 0.08);
     display: flex;
     gap: 16px;
 
-    // ESTILO DOS CARDS DE ÍCONES (IGUAL À IMAGEM SOLICITADA)
+    // ESTILO DOS CARDS DE ÍCONES
     .iconCard {
       display: flex;
       align-items: center;
@@ -53,9 +53,9 @@ $glass-border: rgba(255, 255, 255, 0.08);
       height: 48px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px; // Cantos suavizados identicos ao print
-      color: #94a3b8; // Cor neutra padrão fosca
-      font-size: 1.25rem; // Tamanho ideal para o SVG interno
+      border-radius: 12px; 
+      color: #94a3b8; 
+      font-size: 1.25rem; 
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
 
@@ -63,12 +63,11 @@ $glass-border: rgba(255, 255, 255, 0.08);
         transition: transform 0.3s ease;
       }
 
-      // Efeito de Interação de alto nível
       &:hover {
-        color: $electric-blue; // Ícone acende com a sua cor temática
-        background: rgba(77, 166, 255, 0.05); // Fundo ganha brilho sutil azulado
-        border-color: rgba(77, 166, 255, 0.3); // Borda destaca-se no hover
-        transform: translateY(-3px); // Leve flutuação para feedback tátil
+        color: $electric-blue; 
+        background: rgba(77, 166, 255, 0.05); 
+        border-color: rgba(77, 166, 255, 0.3); 
+        transform: translateY(-3px); 
         box-shadow: 0 8px 20px rgba(77, 166, 255, 0.15);
 
         svg {
@@ -138,6 +137,14 @@ $glass-border: rgba(255, 255, 255, 0.08);
   &:active {
     transform: translateY(0);
   }
+}
+
+// CLASSE PERSONALIZADA PARA DEIXAR O TEXTO DO ALERTA BRANCO E VISÍVEL
+.alertMessage {
+  color: #ffffff !important;
+  background-color: rgba(46, 204, 113, 0.15) !important; // Fundo verde transparente sutil
+  border: 1px solid rgba(46, 204, 113, 0.3) !important;
+  font-weight: 600;
 }
 
 @media (max-width: 991.98px) {
