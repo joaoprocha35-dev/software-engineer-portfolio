@@ -92,7 +92,7 @@
   border-right: 1px solid rgba($text-secondary, 0.15);
 }
 
-// Novos Ícones Sociais (Substitui o antigo Botão)
+// Ícones Sociais Gerais
 .socialIcon {
   display: flex;
   align-items: center;
@@ -199,7 +199,6 @@
   position: relative;
   overflow: hidden;
 
-  // Barra lateral destacada para chamar atenção
   &::before {
     content: '';
     position: absolute;
@@ -220,7 +219,6 @@
     transition: transform 0.3s ease;
   }
 
-  // Animação de avanço na setinha para induzir o clique
   &:hover {
     background-color: $primary;
     color: #000;

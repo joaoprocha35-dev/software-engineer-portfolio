@@ -42,16 +42,13 @@ function Home() {
                 </div>
               </div>
 
-              {/* Redes Sociais do Perfil */}
+              {/* Redes Sociais do Perfil (WhatsApp removido com sucesso) */}
               <div className="d-flex justify-content-center gap-3">
                 <a href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
                   <i className="bi bi-linkedin"></i>
                 </a>
                 <a href="https://github.com/joaoprocha35-dev" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
                   <i className="bi bi-github"></i>
-                </a>
-                <a href="https://wa.me/5514998813787?text=Olá%20João%20Pedro!%20Vim%20pelo%20seu%20portfólio." target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="WhatsApp">
-                  <i className="bi bi-whatsapp"></i>
                 </a>
                 <a href="https://www.instagram.com/ZX.rochaa" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
                   <i className="bi bi-instagram"></i>
@@ -133,9 +130,10 @@ function Home() {
                   
                   <p className="text-white small mb-1 fw-medium">Competências Adicionais:</p>
                   <p className="text-muted small mb-1">• Prototipagem de Interfaces (Nível Intermediário)</p>
-                  <p className="text-muted small mb-1">• Engenharia de Prompts (Intermediário)</p>
-                  <p className="text-muted small mb-1">• MySQL Workbench (Fundamentos)</p>
-                  <p className="text-muted small mb-0">• Regras de Negócio (Nível Intermediário)</p>
+                  <p className="text-muted small mb-1">• Engenharia de Prompts & Ferramentas de IA (Intermediário)</p>
+                  <p className="text-muted small mb-1">• Arquitetura Clean Code & Organização de Diretórios Escalonáveis(Nivel Intermediário)</p>
+                  <p className="text-muted small mb-1">• Bancos de Dados: MySQL Workbench (Fundamentos)</p>
+                  <p className="text-muted small mb-0">• Regras de Negócio & Lógica de Sistemas (Nível Intermediário)</p>
                 </div>
               </div>
             </div>
@@ -174,7 +172,7 @@ function Home() {
             </div>
           </section>
 
-          {/* GATILHO DE CURIOSIDADE (NOVO) */}
+          {/* GATILHO DE CURIOSIDADE */}
           <section className={`card p-4 ${styles.teaserCard}`}>
             <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
               <div>
@@ -183,7 +181,7 @@ function Home() {
                   Além das linhas de código...
                 </h4>
                 <p className="text-muted small mb-0">
-                  Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquiteturas eficientes.
+                  Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquitecturas eficientes.
                 </p>
               </div>
               <div className="flex-shrink-0">
