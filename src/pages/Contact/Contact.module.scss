@@ -1,9 +1,11 @@
 // ==========================================================================
 // ESTILIZAÇÃO DO COMPONENTE DE CONTATO (CSS MODULES + SCSS)
+// Mapeado diretamente para as funções estruturais do arquivo Contact.jsx
 // ==========================================================================
 
 @import '../../styles/variables';
 
+// Variáveis locais para controle do efeito de Glassmorphism
 $glass-bg: rgba(255, 255, 255, 0.03);
 $glass-border: rgba(255, 255, 255, 0.08);
 
@@ -14,7 +16,13 @@ $glass-border: rgba(255, 255, 255, 0.08);
   align-items: center;
 }
 
+/* ==========================================================================
+   FUNÇÃO DO BLOCO: CARD / BLOCO DE INFORMAÇÕES DE CONTATO (.infoBlock)
+   Sua função é formatar a tipografia da chamada principal (CTA), preparando
+   o usuário para a ação e aninhando a área de redes sociais.
+   ========================================================================== */
 .infoBlock {
+  
   .subtitle {
     color: $electric-blue; 
     font-size: 0.85rem;
@@ -39,12 +47,18 @@ $glass-border: rgba(255, 255, 255, 0.08);
     margin-bottom: 30px;
   }
 
-  // CONTAINER DOS ÍCONES
+  // Container responsável pelo alinhamento e espaçamento horizontal das redes
   .socialLinks {
     display: flex;
     gap: 16px;
 
-    // ESTILO DOS CARDS DE ÍCONES
+    /* ==========================================================================
+       FUNÇÃO DO MICRO-CARD: CARD DE LINK SOCIAL (.iconCard)
+       Controla a identidade visual geométrica dos botões do LinkedIn e GitHub.
+       Aplica curvas suaves, bordas translúcidas e uma transição de transformação 
+       acelerada (cubic-bezier) para criar um efeito de elevação flutuante e sombra 
+       neon no hover.
+       ========================================================================== */
     .iconCard {
       display: flex;
       align-items: center;
@@ -59,35 +73,47 @@ $glass-border: rgba(255, 255, 255, 0.08);
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
 
+      // Suaviza a micro-escala interna do ícone SVG
       svg {
         transition: transform 0.3s ease;
       }
 
+      // Comportamento interativo de foco/hover do micro-card
       &:hover {
         color: $electric-blue; 
         background: rgba(77, 166, 255, 0.05); 
         border-color: rgba(77, 166, 255, 0.3); 
-        transform: translateY(-3px); 
-        box-shadow: 0 8px 20px rgba(77, 166, 255, 0.15);
+        transform: translateY(-3px); // Efeito físico de erguer o card
+        box-shadow: 0 8px 20px rgba(77, 166, 255, 0.15); // Sombra brilhante customizada
 
         svg {
-          transform: scale(1.05);
+          transform: scale(1.05); // Leve pulso no ícone
         }
       }
     }
   }
 }
 
+/* ==========================================================================
+   FUNÇÃO DO CARD: CARD DE FORMULÁRIO DE CONTATO (.glassCard)
+   Sua função principal é gerar a estética de "vidro fosco" (Glassmorphism).
+   Ele mescla opacidade de fundo, desfoque de camadas de hardware (backdrop-filter) 
+   e sombras profundas para isolar a área de manipulação de dados do formulário 
+   do restante do fundo da aplicação.
+   ========================================================================== */
 .glassCard {
   background: $glass-bg;
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px); // Retrocompatibilidade para navegadores WebKit/Safari
   border: 1px solid $glass-border;
   border-radius: $border-radius; 
   padding: 40px;
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 
+  // Zera escopos modulares para estilizar classes globais injetadas pelo Bootstrap
   :global {
+    
+    // Customização interna dos campos de input e textarea contidos no card
     .form-control {
       background: rgba(0, 0, 0, 0.2);
       border: 1px solid $glass-border;
@@ -96,10 +122,11 @@ $glass-border: rgba(255, 255, 255, 0.08);
       border-radius: 8px;
       transition: $transition-base;
 
+      // Estado de foco ativo do input (indica onde o usuário está digitando)
       &:focus {
         background: rgba(0, 0, 0, 0.4);
         border-color: $electric-blue;
-        box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.25); 
+        box-shadow: 0 0 0 3px rgba(77, 166, 255, 0.25); // Glow azul sutil ao redor
         color: $text-primary;
       }
 
@@ -108,6 +135,7 @@ $glass-border: rgba(255, 255, 255, 0.08);
       }
     }
     
+    // Rótulos de texto dos inputs dentro do card
     .form-label {
       font-size: 0.9rem;
       font-weight: 500;
@@ -116,6 +144,7 @@ $glass-border: rgba(255, 255, 255, 0.08);
   }
 }
 
+// Botão de Envio posicionado no rodapé do Card de Formulário
 .btnSubmit {
   background: $electric-blue;
   color: $dark-bg-main; 
@@ -135,19 +164,30 @@ $glass-border: rgba(255, 255, 255, 0.08);
   }
 
   &:active {
-    transform: translateY(0);
+    transform: translateY(0); // Reseta a altura quando clicado fisicamente
   }
 }
 
-// CLASSE PERSONALIZADA PARA DEIXAR O TEXTO DO ALERTA BRANCO E VISÍVEL
+/* ==========================================================================
+   FUNÇÃO DO BLOCO: ALERTA DE FEEDBACK / STATUS (.alertMessage)
+   Sua função é sobrescrever a identidade padrão do Bootstrap para compor
+   uma caixa de notificação integrada ao Glassmorphism. Cria um contraste seguro 
+   e legível (texto branco) com fundo verde sem quebrar a harmonia escura do tema.
+   ========================================================================== */
 .alertMessage {
   color: #ffffff !important;
-  background-color: rgba(46, 204, 113, 0.15) !important; // Fundo verde transparente sutil
+  background-color: rgba(46, 204, 113, 0.15) !important; // Fundo verde transparente ecológico
   border: 1px solid rgba(46, 204, 113, 0.3) !important;
   font-weight: 600;
 }
 
+/* ==========================================================================
+   REGRAS DE RESPONSIVIDADE (MEDIA QUERIES)
+   Garante a quebra de layout fluida para tablets, notebooks e smartphones.
+   ========================================================================== */
 @media (max-width: 991.98px) {
+  
+  // Centraliza textos e ícones do bloco esquerdo quando empilhado no Mobile
   .infoBlock {
     text-align: center;
     margin-bottom: 20px;
@@ -157,6 +197,7 @@ $glass-border: rgba(255, 255, 255, 0.08);
     }
   }
   
+  // Reduz o preenchimento interno do Glass Card para economizar espaço em telas menores
   .glassCard {
     padding: 25px;
   }

@@ -62,14 +62,18 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             >
               Ver Código (GitHub)
             </a>
-            <a 
-              href={project.liveDemoUrl} 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className={styles.btnPrimary}
-            >
-              Acessar Live Demo
-            </a>
+            
+            {/* 🚀 RENDERIZAÇÃO CONDICIONAL SÊNIOR: O botão só existe se houver um link válido */}
+            {project.liveDemoUrl && project.liveDemoUrl.trim() !== "" && (
+              <a 
+                href={project.liveDemoUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={styles.btnPrimary}
+              >
+                Acessar Live Demo
+              </a>
+            )}
           </div>
         </div>
 

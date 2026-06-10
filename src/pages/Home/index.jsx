@@ -3,6 +3,12 @@ import { Link } from 'react-router-dom'; // Importado para fazer a navegação d
 import profileImg from '../../assets/profile.jpg';
 import styles from './Home.module.scss';
 
+/**
+ * Componente Home
+ * Apresenta a página principal do portfólio/currículo do desenvolvedor.
+ * Organizado em uma estrutura de Grid do Bootstrap com uma barra lateral de perfil
+ * e uma seção principal de conteúdo dividida em múltiplos Cards funcionais.
+ */
 function Home() {
   return (
     <div className="container pt-5 mt-4 mt-lg-0 py-5">
@@ -10,15 +16,21 @@ function Home() {
         
         {/* SIDEBAR DO PERFIL */}
         <aside className="col-lg-4" data-aos="fade-right">
+          
+          {/* FUNÇÃO DO CARD: CARD DE PERFIL / APRESENTAÇÃO
+             Este card atua como o cartão de visitas estático do profissional.
+             Sua função é centralizar a imagem de avatar, o nome principal (substituindo o antigo cargo), 
+             a biografia resumida, métricas de carreira (anos e projetos) e links diretos para redes sociais.
+          */}
           <div className={`card p-4 text-center ${styles.profileCard}`}>
             <div className={styles.avatarWrapper}>
               <img src={profileImg} alt="João Pedro" className="img-fluid" />
             </div>
 
             <div className="card-body p-0">
-              {/* Box de Digitação */}
+              {/* Box do Nome Principal */}
               <div className="mb-2" style={{ minHeight: '30px' }}>
-                <span className={styles.typewriter}>Engenheiro de Software & Analista</span>
+                <span className={styles.typewriter}>João Pedro Rocha</span>
               </div>
               
               <div className="mt-3">
@@ -32,7 +44,7 @@ function Home() {
               
               <div className={`d-flex justify-content-center gap-4 mb-4 py-2 ${styles.statsContainer}`}>
                 <div>
-                  <h5 className="text-white fw-bold mb-0">2+</h5>
+                  <h5 className="text-white fw-bold mb-0">1.6</h5>
                   <span className="text-muted text-uppercase fw-bold">Anos</span>
                 </div>
                 <div className={styles.divider}></div>
@@ -42,7 +54,7 @@ function Home() {
                 </div>
               </div>
 
-              {/* Redes Sociais do Perfil (WhatsApp removido com sucesso) */}
+              {/* Redes Sociais do Perfil */}
               <div className="d-flex justify-content-center gap-3">
                 <a href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
                   <i className="bi bi-linkedin"></i>
@@ -63,6 +75,11 @@ function Home() {
         <main className="col-lg-8" data-aos="fade-left">
           
           {/* EXPERIÊNCIA PROFISSIONAL */}
+          {/* FUNÇÃO DO CARD: CARD DE EXPERIÊNCIAS
+             Sua função é expor o histórico profissional de forma cronológica ou por relevância.
+             Possui comportamento dinâmico de sanfona (accordion/collapse) controlado por um botão, 
+             permitindo ao usuário ocultar ou exibir a lista de projetos ativos desenvolvidos.
+          */}
           <section className={`card p-4 mb-4 ${styles.contentCard}`}>
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className={styles.sectionTitle}>Experiência Profissional</span>
@@ -77,22 +94,13 @@ function Home() {
             
             <div className="collapse show" id="collapseExp">
               <div className="pt-2">
-                <div className="mb-4">
+                <div className="mb-0">
                   <h4 className="text-white fw-bold mb-1 fs-5 d-flex align-items-center">
                     <i className="bi bi-circle-fill text-primary me-2" style={{ fontSize: '0.65rem' }}></i> 
                     Site - Instituição Missionária
                   </h4>
-                  <p className="text-muted small ms-4">
-                    Desenvolvimento de plataforma digital para transição de presença social (Instagram) para ecossistema web próprio. O objetivo central foi a profissionalização da divulgação missionária, pavimentando o caminho para a implementação de um e-commerce em 2027.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-white fw-bold mb-1 fs-5 d-flex align-items-center">
-                    <i className="bi bi-circle-fill text-primary me-2" style={{ fontSize: '0.65rem' }}></i>
-                    Automação de Confecção (TCC)
-                  </h4>
-                  <p className="text-muted small ms-4">
-                    Sistema focado na digitalização de processos analógicos. Substituímos o controle em papel por uma gestão automatizada de estoque e pedidos, visando a redução de erros humanos e otimização da logística têxtil.
+                  <p className="text-muted small ms-4 mb-0">
+                    Desenvolvimento de plataforma digital para transição de presença social (Instagram) para ecossistema web próprio. O objective central foi a profissionalização da divulgação missionária, pavimentando o caminho para a implementação de um e-commerce em 2027.
                   </p>
                 </div>
               </div>
@@ -100,6 +108,12 @@ function Home() {
           </section>
 
           {/* HABILIDADES */}
+          {/* FUNÇÃO DO CARD: CARD DE HABILIDADES (SKILLS)
+             Tem a função técnica de categorizar o conhecimento do desenvolvedor.
+             Divide o espaço interno em duas colunas organizadas: uma para competências comportamentais 
+             (Soft Skills) e outra para competências técnicas (Hard Skills), ferramentas e arquiteturas de código.
+             Também suporta recolhimento via Bootstrap collapse.
+          */}
           <section className={`card p-4 mb-4 ${styles.contentCard}`}>
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className={styles.sectionTitle}>Habilidades</span>
@@ -121,6 +135,7 @@ function Home() {
                     <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Comunicativo</li>
                     <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Escuta ativa</li>
                     <li className="mb-0"><i className="bi bi-check2-circle text-primary me-2"></i>Tomada de decisão</li>
+                    <li className="mb-1 mt-1"><i className="bi bi-check2-circle text-primary me-2"></i>Adaptação</li>
                   </ul>
                 </div>
                 <div className="col-md-6 ps-md-4">
@@ -131,7 +146,7 @@ function Home() {
                   <p className="text-white small mb-1 fw-medium">Competências Adicionais:</p>
                   <p className="text-muted small mb-1">• Prototipagem de Interfaces (Nível Intermediário)</p>
                   <p className="text-muted small mb-1">• Engenharia de Prompts & Ferramentas de IA (Intermediário)</p>
-                  <p className="text-muted small mb-1">• Arquitetura Clean Code & Organização de Diretórios Escalonáveis(Nivel Intermediário)</p>
+                  <p className="text-muted small mb-1">• Arquitetura Clean Code & Organização de Diretórios Escalonáveis (Nível Intermediário)</p>
                   <p className="text-muted small mb-1">• Bancos de Dados: MySQL Workbench (Fundamentos)</p>
                   <p className="text-muted small mb-0">• Regras de Negócio & Lógica de Sistemas (Nível Intermediário)</p>
                 </div>
@@ -140,6 +155,11 @@ function Home() {
           </section>
 
           {/* FORMAÇÃO ACADÊMICA E TÉCNICA */}
+          {/* FUNÇÃO DO CARD: CARD DE FORMAÇÃO ACADÊMICA
+             Sua função é comprovar o embasamento teórico e técnico do desenvolvedor.
+             Renderiza caixas internas de layout (educationBox) que destacam o grau acadêmico,
+             instituições de ensino (Unifatecie e SENAI) acompanhadas por badges de data de início e conclusão prevista.
+          */}
           <section className={`card p-4 mb-4 ${styles.contentCard}`}>
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className={styles.sectionTitle}>Formação Acadêmica & Técnica</span>
@@ -164,7 +184,7 @@ function Home() {
                 <div className={styles.educationBox}>
                   <div>
                     <h4 className="text-white fw-bold mb-1 fs-6">Análise e Desenvolvimento de Sistemas (SENAI)</h4>
-                    <p className="text-muted small mb-0">Formação Tecnólogo</p>
+                    <p className="text-muted small mb-0">Formação - Curso Técnico</p>
                   </div>
                   <span className={styles.dateBadge}>2025 - 2026 (Em formação)</span>
                 </div>
@@ -173,6 +193,11 @@ function Home() {
           </section>
 
           {/* GATILHO DE CURIOSIDADE */}
+          {/* FUNÇÃO DO CARD: CARD TEASER (GATILHO DE CURIOSIDADE / CTA)
+             Diferente dos outros cards de exibição estática, este possui uma função estritamente de engajamento e conversão.
+             Ele serve como um "Call To Action" (Chamada para Ação), instigando a curiosidade do visitante a sair 
+             da página Home e navegar para a rota interna "/sobre-mim" utilizando o componente interativo `Link`.
+          */}
           <section className={`card p-4 ${styles.teaserCard}`}>
             <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
               <div>
@@ -181,7 +206,7 @@ function Home() {
                   Além das linhas de código...
                 </h4>
                 <p className="text-muted small mb-0">
-                  Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquitecturas eficientes.
+                  Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquiteturas eficientes.
                 </p>
               </div>
               <div className="flex-shrink-0">

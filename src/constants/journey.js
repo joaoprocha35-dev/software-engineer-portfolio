@@ -9,7 +9,7 @@ export const journeyData = [
     numero: "01",
     titulo: 'A Curiosidade no Celular',
     descricao: 'Olhar para trás e ver a conclusão do Ensino Médio é lembrar de onde a base de tudo começou. Assim que peguei esse diploma, soube que era hora de traçar caminhos mais altos. Decidi usar toda essa energia e dedicação para iniciar a minha jornada no desenvolvimento, onde cada novo aprendizado me conecta diretamente com o profissional de tecnologia que estou me tornando. O fim da escola foi, na verdade, o ponto de partida para o meu futuro.',
-    tags: ['Autodidatismo', 'Curiosidade', 'Determinação'],
+    tags: ['Didático', 'Curiosidade', 'Determinação'],
     imagem: aboutGraduation
   },
   {
@@ -24,7 +24,7 @@ export const journeyData = [
     id: 3,
     numero: "03",
     titulo: 'Preparado para o Mercado',
-    descricao: 'Hoje, o foco é a evolução constante. O garoto que antes só tinha um celular agora avança diariamente no desenvolvimento web, dominando tecnologias como HTML, CSS, JavaScript, Bootstrap, React e SCSS, sempre alinhadas a conceitos refinados de UI e UX. A cada novo projeto, o objetivo é entregar interfaces modernas, acessíveis e centradas nas necessidades do usuário. Sigo evoluindo para superar os desafios do mercado de tecnologia e, mais para a frente, pretendo expandir meus horizontes explorando o Tailwind CSS e o Node.js no back-end, consolidando de vez minha presença no ecossistema Full-Stack.',
+    descricao: 'Hoje, o foco é a evolução constante. O garoto que antes só tinha um celular agora avança diariamente no desenvolvimento web, dominando tecnologias como HTML, CSS, JavaScript, Bootstrap, React e SCSS, sempre alinhadas a conceitos refinados de UI e UX. A cada novo projeto, o objetivo é entregar interfaces modernas, acessíveis e centradas nas necessidades do usuário. Sigo evoluindo para superar os desafios do mercado de tecnologia e, mais para a frente, pretendo expandir meus horizontes explorando outros frameworks, Tailwind CSS e o Node.js no back-end, consolidando de vez minha presença no ecossistema Full-Stack.',
     tags: ['Profissional', 'Full-Stack', 'Excelência'],
     imagem: aboutProfessional
   }
