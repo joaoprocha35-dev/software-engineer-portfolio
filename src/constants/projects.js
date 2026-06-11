@@ -13,7 +13,7 @@ export const projects = [
     coverImage: "/assets/portfolio/foto01.png",
     notebookImage: "/assets/portfolio/foto01.png",
     viewSourceUrl: "https://github.com/joaoprocha35-dev/site-iron-dome-missions.git",
-    liveDemoUrl: "https://seu-ecommerce.demo.com" // 🌟 Único ativo que exibirá o botão
+    liveDemoUrl: "https://missoesirondome.vercel.app/" // 🌟 Único ativo que exibirá o botão
   },
   {
     id: 2,

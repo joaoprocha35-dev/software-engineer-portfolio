@@ -1,24 +1,22 @@
-# 🚀 Software Engineer Portfolio
+# 🚀 Meu Portfólio - João Pedro Rocha
 
-Ecosistema web responsivo construído com **React** e **SASS**, arquitetado como uma aplicação SPA (Single Page Application) de alta fidelidade para centralizar meu currículo, jornada e principais projetos de engenharia de software.
+Um portfólio web moderno feito com **React**, **Bootstrap** e **SASS**, mostrando minha jornada como desenvolvedor e meus principais projetos.
 
-## 📱 Telas & Funcionalidades
+## 📌 O que tem aqui
 
-* **Home (Currículo Integrado):** Sidebar de perfil dinâmico com links sociais, seção de competências táticas (Soft & Hard Skills) e linha do tempo de experiência profissional.
-* **Sobre Mim:** Um mergulho profundo nos meus valores, motivação e trajetória detalhada na tecnologia.
-* **Portfólio Interativo:** Showcase de projetos utilizando uma interface tridimensional em cubo (Swiper.js Cube Effect) com tratamento de toque mobile otimizado e modais responsivos que simulam telas de notebooks físicos.
-* **Contato:** Canal direto para recrutadores e tech leads iniciarem conexões profissionais.
+- **Home**: Meu perfil, experiência e links das redes
+- **Sobre Mim**: Minha história na tecnologia
+- **Portfólio**: Meus projetos com um carrossel 3D bem legal
+- **Contato**: Formulário para entrar em contato comigo
 
----
+## 🎯 O que aprendi fazendo isso
 
-## 🛠️ Tecnologias & Arquitetura
-
-O projeto foi construído utilizando as melhores práticas do mercado para desenvolvimento Front-End:
-
-* **Core:** [React](https://react.dev/) & [Vite](https://vitejs.dev/) (Para builds otimizados e Hot Module Replacement instantâneo).
-* **Estilização:** [SASS Modules](https://sass-lang.com/) (Garantindo o encapsulamento e isolamento de escopo do CSS) & [Bootstrap 5](https://getbootstrap.com/) (Estrutura de grid responsiva).
-* **Roteamento:** [React Router](https://reactrouter.com/) (Com gerenciador de ciclo de vida para correção automatizada do scroll da tela).
-* **Animações:** [AOS (Animate On Scroll)](https://michalsnik.github.io/aos/) (Para transições suaves de scroll) e [Swiper.js](https://swiperjs.com/) (Para o carrossel tático 3D).
+- **SPA (Single Page Application)**: Uma aplicação que não recarrega a página toda, só muda o conteúdo
+- **Estrutura de pastas**: Organizando componentes, páginas e estilos de forma limpa
+- **Botões CTA**: Criar botões que chamam ação (Call To Action)
+- **Responsivo**: Funciona bem no celular e no computador
+- **CSS Modules**: Estilos isolados por componente com SASS
+- **React Router**: Sistema de rotas para navegar entre páginas
 
 ---
 
@@ -28,4 +26,24 @@ Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/joaoprocha35-dev/software-engineer-portfolio.git](https://github.com/joaoprocha35-dev/software-engineer-portfolio.git)
+   git clone https://github.com/joaoprocha35-dev/software-engineer-portfolio.git
+   cd software-engineer-portfolio
+   ```
+
+2. **Instale as dependências:**
+   ```bash
+   npm install
+   ```
+
+4. **Rode o projeto:**
+   ```bash
+   npm run dev
+   ```
+
+---
+
+## � Me segue nas redes
+
+- **LinkedIn:** [linkedin.com/in/delmiro-rocha-b668043b0](https://www.linkedin.com/in/delmiro-rocha-b668043b0/)
+- **GitHub:** [github.com/joaoprocha35-dev](https://github.com/joaoprocha35-dev)
+- **Instagram:** [@ZX.rochaa](https://www.instagram.com/ZX.rochaa)

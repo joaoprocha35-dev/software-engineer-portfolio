@@ -31,7 +31,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       {/* Colocamos o ScrollToTop logo abaixo do BrowserRouter para ele interceptar todas as rotas */}
       <ScrollToTop />
       

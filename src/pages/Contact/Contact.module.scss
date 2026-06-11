@@ -3,7 +3,7 @@
 // Mapeado diretamente para as funções estruturais do arquivo Contact.jsx
 // ==========================================================================
 
-@import '../../styles/variables';
+@use '../../styles/variables' as *;
 
 // Variáveis locais para controle do efeito de Glassmorphism
 $glass-bg: rgba(255, 255, 255, 0.03);

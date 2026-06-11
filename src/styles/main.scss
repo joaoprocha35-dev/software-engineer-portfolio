@@ -3,12 +3,12 @@
 // 1. Importo primeiro as minhas variáveis globais e definições de cores.
 // Eu faço isso logo no topo porque nenhum estilo subsequente (incluindo o próprio Bootstrap) 
 // pode ser processado sem antes conhecer a minha paleta de cores escura e o azul elétrico.
-@import 'variables';
+@use 'variables' as *;
 
 // 2. Importo a ponte de integração do Bootstrap.
 // Aqui, o motor do Bootstrap absorve as configurações do arquivo de variáveis que criei acima 
 // e gera todo o CSS utilitário customizado que vou usar nas minhas telas.
-@import 'bootstrap';
+@use './bootstrap';
 //
 @import "bootstrap-icons/font/bootstrap-icons.css";
 // 3. Estilos Globais de Elementos Raiz
