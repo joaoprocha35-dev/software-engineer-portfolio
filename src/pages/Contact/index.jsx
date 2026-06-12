@@ -19,7 +19,7 @@ const Contact = () => {
 
     // Estado para controlar o fluxo de envio assíncrono (evita múltiplos cliques)
     const [loading, setLoading] = useState(false);
-    
+
     // Estado para renderizar mensagens de feedback de sucesso ou erro para o usuário
     const [statusMessage, setStatusMessage] = useState({ type: '', text: '' });
 
@@ -39,9 +39,9 @@ const Contact = () => {
         setStatusMessage({ type: '', text: '' }); // Reseta mensagens anteriores
 
         // Recupera as chaves geradas no painel do EmailJS a partir das variáveis de ambiente do Vite
-        const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-        const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-        const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+        const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'service_ibmqqaf';
+        const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_darnh6g';
+        const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'ycM68Gmazh2a0MyU9';
 
         // Mapeia os dados informados para os campos esperados pelo template do EmailJS
         const templateParams = {
@@ -72,7 +72,7 @@ const Contact = () => {
 
                 {/* LADO ESQUERDO: INFORMAÇÕES E REDES */}
                 <div className="col-lg-5">
-                    
+
                     {/* FUNÇÃO DO CARD: CARD/BLOCO DE INFORMAÇÕES DE CONTATO
                         Sua função é preparar o contexto da seção, servindo como uma chamada (CTA) acolhedora.
                         Ele introduz a disponibilidade profissional por meio de textos institucionais e
@@ -86,7 +86,7 @@ const Contact = () => {
                         </p>
 
                         <div className={styles.socialLinks}>
-                            
+
                             {/* FUNÇÃO DO MICRO-CARD: CARD DE LINK SOCIAL (LINKEDIN)
                                 Atua como um micro-card interativo com efeito hover. Sua função é capturar 
                                 o clique do usuário e redirecioná-lo externamente para o perfil do LinkedIn,
@@ -121,7 +121,7 @@ const Contact = () => {
 
                 {/* LADO DIREITO: FORMULÁRIO DE CONTATO DIRETÃO */}
                 <div className="col-lg-7">
-                    
+
                     {/* FUNÇÃO DO CARD: CARD DE FORMULÁRIO DE CONTATO (GLASS CARD)
                         Este card possui efeito de "Glassmorphism" (efeito de vidro reflexivo pelo CSS).
                         Sua função técnica fundamental é capturar, validar e enviar as entradas do usuário de 
