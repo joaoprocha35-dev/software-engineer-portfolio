@@ -67,143 +67,124 @@ const Contact = () => {
     };
 
     return (
-        <section className={`container ${styles.contatoSection}`} data-aos="fade-up">
-            <div className="row align-items-center g-5">
+        <section className={styles.contatoSection}>
+            <div className={styles.sobreContent} data-aos="fade-up">
+                
+                {/* CABEÇALHO DA SEÇÃO UNIFICADO */}
+                <header className="text-center mb-5">
+                    <h2 className={styles.tituloPrincipal}>Contato</h2>
+                    <div className={styles.linhaDecorativa}></div>
+                </header>
 
-                {/* LADO ESQUERDO: INFORMAÇÕES E REDES */}
-                <div className="col-lg-5">
+                <div className="row align-items-center g-5">
 
-                    {/* FUNÇÃO DO CARD: CARD/BLOCO DE INFORMAÇÕES DE CONTATO
-                        Sua função é preparar o contexto da seção, servindo como uma chamada (CTA) acolhedora.
-                        Ele introduz a disponibilidade profissional por meio de textos institucionais e
-                        atua como o ponto de ancoragem para os canais alternativos de comunicação (redes sociais).
-                    */}
-                    <div className={styles.infoBlock}>
-                        <span className={styles.subtitle}>VAMOS CONVERSAR?</span>
-                        <h2 className={styles.title}>Tem um projeto em mente ou uma vaga?</h2>
-                        <p className={styles.description}>
-                            Estou sempre aberto a novas oportunidades e desafios. Preencha o formulário ao lado ou entre em contato diretamente pelas redes sociais.
-                        </p>
+                    {/* LADO ESQUERDO: INFORMAÇÕES E REDES */}
+                    <div className="col-12 col-lg-5">
+                        <div className={styles.infoBlock}>
+                            <span className={styles.stepNumber}>VAMOS CONVERSAR?</span>
+                            <h3 className={styles.itemTitulo}>Tem um projeto em mente ou uma vaga?</h3>
+                            <p className={styles.itemDescricao}>
+                                Estou sempre aberto a novas oportunidades e desafios. Preencha o formulário ao lado ou entre em contato diretamente pelas redes sociais.
+                            </p>
 
-                        <div className={styles.socialLinks}>
+                            <div className={styles.socialLinks}>
+                                <a
+                                    href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={styles.socialIcon}
+                                    aria-label="LinkedIn"
+                                >
+                                    <FaLinkedinIn />
+                                </a>
 
-                            {/* FUNÇÃO DO MICRO-CARD: CARD DE LINK SOCIAL (LINKEDIN)
-                                Atua como um micro-card interativo com efeito hover. Sua função é capturar 
-                                o clique do usuário e redirecioná-lo externamente para o perfil do LinkedIn,
-                                mantendo a segurança com os atributos rel="noreferrer".
-                            */}
-                            <a
-                                href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/"
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles.iconCard}
-                                aria-label="LinkedIn"
-                            >
-                                <FaLinkedinIn />
-                            </a>
-
-                            {/* FUNÇÃO DO MICRO-CARD: CARD DE LINK SOCIAL (GITHUB)
-                                Semelhante ao anterior, este micro-card interativo isola e destaca visualmente 
-                                o atalho para o ecossistema de repositórios do desenvolvedor no GitHub.
-                            */}
-                            <a
-                                href="https://github.com/joaoprocha35-dev"
-                                target="_blank"
-                                rel="noreferrer"
-                                className={styles.iconCard}
-                                aria-label="GitHub"
-                            >
-                                <FaGithub />
-                            </a>
+                                <a
+                                    href="https://github.com/joaoprocha35-dev"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className={styles.socialIcon}
+                                    aria-label="GitHub"
+                                >
+                                    <FaGithub />
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                {/* LADO DIREITO: FORMULÁRIO DE CONTATO DIRETÃO */}
-                <div className="col-lg-7">
+                    {/* LADO DIREITO: FORMULÁRIO DE CONTATO */}
+                    <div className="col-12 col-lg-7">
+                        <div className={styles.formularioCard}>
+                            <form onSubmit={handleSubmit} className="row g-4">
 
-                    {/* FUNÇÃO DO CARD: CARD DE FORMULÁRIO DE CONTATO (GLASS CARD)
-                        Este card possui efeito de "Glassmorphism" (efeito de vidro reflexivo pelo CSS).
-                        Sua função técnica fundamental é capturar, validar e enviar as entradas do usuário de 
-                        forma segura. Ele centraliza a manipulação lógica dos estados dos inputs, a restrição 
-                        de digitação durante o `loading`, e renderiza de forma condicional as caixas de alerta.
-                    */}
-                    <div className={styles.glassCard}>
-                        <form onSubmit={handleSubmit} className="row g-4">
-
-                            {/* Campo de Entrada: Nome */}
-                            <div className="col-md-6">
-                                <label htmlFor="nome" className="form-label text-light">Seu Nome</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="nome"
-                                    name="nome"
-                                    required
-                                    value={formData.nome}
-                                    onChange={handleChange}
-                                    placeholder="John Doe"
-                                    disabled={loading} // Bloqueia o campo enquanto envia
-                                />
-                            </div>
-
-                            {/* Campo de Entrada: Assunto */}
-                            <div className="col-md-6">
-                                <label htmlFor="assunto" className="form-label text-light">Assunto</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    id="assunto"
-                                    name="assunto"
-                                    required
-                                    value={formData.assunto}
-                                    onChange={handleChange}
-                                    placeholder="Oportunidade / Parceria"
-                                    disabled={loading}
-                                />
-                            </div>
-
-                            {/* Campo de Entrada: Mensagem (Corpo do e-mail) */}
-                            <div className="col-12">
-                                <label htmlFor="mensagem" className="form-label text-light">Mensagem</label>
-                                <textarea
-                                    className="form-control"
-                                    id="mensagem"
-                                    name="mensagem"
-                                    rows="5"
-                                    required
-                                    value={formData.mensagem}
-                                    onChange={handleChange}
-                                    placeholder="Escreva sua mensagem aqui..."
-                                    disabled={loading}
-                                ></textarea>
-                            </div>
-
-                            {/* FUNÇÃO DO BLOCO: ALERTA DE FEEDBACK / STATUS DA MENSAGEM
-                                Renderizado de forma totalmente dinâmica dentro do formulário. 
-                                Sua função é interceptar e traduzir visualmente o sucesso ou a falha do 
-                                envio da requisição, alternando as classes nativas de alertas do Bootstrap 
-                                (`alert-success` ou `alert-danger`) conforme o tipo da resposta da API.
-                            */}
-                            {statusMessage.text && (
-                                <div className="col-12">
-                                    <div className={`alert ${statusMessage.type === 'success' ? 'alert-success' : 'alert-danger'} ${styles.alertMessage} d-block`} role="alert">
-                                        {statusMessage.text}
-                                    </div>
+                                {/* Campo de Entrada: Nome */}
+                                <div className="col-md-6">
+                                    <label htmlFor="nome" className={styles.labelForm}>Seu Nome</label>
+                                    <input
+                                        type="text"
+                                        className={styles.inputForm}
+                                        id="nome"
+                                        name="nome"
+                                        required
+                                        value={formData.nome}
+                                        onChange={handleChange}
+                                        placeholder="John Doe"
+                                        disabled={loading}
+                                    />
                                 </div>
-                            )}
 
-                            {/* Botão de Envio com alternância de texto reativo (Loading) */}
-                            <div className="col-12 text-end">
-                                <button type="submit" className={styles.btnSubmit} disabled={loading}>
-                                    {loading ? 'Enviando...' : 'Enviar Mensagem'}
-                                </button>
-                            </div>
+                                {/* Campo de Entrada: Assunto */}
+                                <div className="col-md-6">
+                                    <label htmlFor="assunto" className={styles.labelForm}>Assunto</label>
+                                    <input
+                                        type="text"
+                                        className={styles.inputForm}
+                                        id="assunto"
+                                        name="assunto"
+                                        required
+                                        value={formData.assunto}
+                                        onChange={handleChange}
+                                        placeholder="Oportunidade / Parceria"
+                                        disabled={loading}
+                                    />
+                                </div>
 
-                        </form>
+                                {/* Campo de Entrada: Mensagem */}
+                                <div className="col-12">
+                                    <label htmlFor="mensagem" className={styles.labelForm}>Mensagem</label>
+                                    <textarea
+                                        className={styles.textareaForm}
+                                        id="mensagem"
+                                        name="mensagem"
+                                        rows="5"
+                                        required
+                                        value={formData.mensagem}
+                                        onChange={handleChange}
+                                        placeholder="Escreva sua mensagem aqui..."
+                                        disabled={loading}
+                                    ></textarea>
+                                </div>
+
+                                {/* FEEDBACK DINÂMICO DE STATUS */}
+                                {statusMessage.text && (
+                                    <div className="col-12">
+                                        <div className={`alert ${statusMessage.type === 'success' ? 'alert-success' : 'alert-danger'} ${styles.alertMessage} d-block`} role="alert">
+                                            {statusMessage.text}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Botão de Envio Estilizado */}
+                                <div className="col-12 text-end">
+                                    <button type="submit" className={styles.ctaBotao} disabled={loading}>
+                                        <span>{loading ? 'Enviando...' : 'Enviar Mensagem'}</span>
+                                    </button>
+                                </div>
+
+                            </form>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </section>
     );

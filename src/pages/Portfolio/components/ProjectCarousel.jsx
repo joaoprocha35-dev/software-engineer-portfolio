@@ -10,7 +10,6 @@ import 'swiper/css/navigation';
 import styles from '../Portfolio.module.scss';
 
 const ProjectCarousel = ({ projects, onProjectSelect }) => {
-  // Guarda a coordenada X e Y onde o toque/clique começou no Swiper
   const touchStartPos = useRef({ x: 0, y: 0 });
 
   return (
@@ -34,28 +33,23 @@ const ProjectCarousel = ({ projects, onProjectSelect }) => {
         modules={[EffectCube, Pagination, Navigation, Autoplay]}
         className={styles.mySwiper}
         
-        // 💡 SOLUÇÃO SÊNIOR: Captura o início do toque usando a API unificada do Swiper
         onTouchStart={(swiper, event) => {
           const touch = event.touches ? event.touches[0] : event;
           touchStartPos.current = { x: touch.clientX, y: touch.clientY };
         }}
 
-        // Captura o fim do toque e calcula se foi um clique estático ou um arrasto de cubo
         onTouchEnd={(swiper, event) => {
           const touch = event.changedTouches ? event.changedTouches[0] : event;
           
           const deltaX = Math.abs(touch.clientX - touchStartPos.current.x);
           const deltaY = Math.abs(touch.clientY - touchStartPos.current.y);
 
-          // Se moveu menos de 10px, o usuário não arrastou o cubo, ele apenas CLICOU
           if (deltaX < 10 && deltaY < 10) {
-            // Ignora o clique se ele aconteceu nos botões de navegação ou paginação
             const isControl = event.target.closest('.swiper-pagination') || 
                              event.target.closest('.swiper-button-next') || 
                              event.target.closest('.swiper-button-prev');
 
             if (!isControl) {
-              // Pegamos o projeto correspondente à face ativa do cubo atual
               const currentProject = projects[swiper.activeIndex];
               if (currentProject) {
                 onProjectSelect(currentProject);

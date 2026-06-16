@@ -1,15 +1,88 @@
 @use '../../styles/variables' as *;
 
 /* ==========================================================================
-   ESTILOS DO CARD: CARD DE PERFIL / APRESENTAÇÃO
-   Sua função é estilizar o cartão de visitas do profissional, garantindo
-   destaque visual para a foto, efeito de digitação e links sociais.
+   1. MAPEAMENTO DE VARIÁVEIS DINÂMICAS (SISTEMA DE TEMAS)
+   Controle estrito de contraste e legibilidade com engenharia de UI/UX
    ========================================================================== */
+.homeContainer {
+  // MODO ESCURO (Sua identidade visual original, sólida e profunda)
+  :global(body[data-theme="dark"]) & {
+    --bg-principal: #0b111e;
+    --bg-card: #0b111e;
+    --bg-sub-box: rgba(0, 0, 0, 0.25);
+    --border-color: rgba(255, 255, 255, 0.05);
+    --border-sub-box: rgba(255, 255, 255, 0.06);
+    --text-main: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.6);
+    --shadow-main: 0 25px 50px rgba(0, 0, 0, 0.55), 0 4px 15px rgba(0, 0, 0, 0.35);
+    --shadow-inset: inset 0 1px 0px rgba(255, 255, 255, 0.08);
+    --teaser-gradient: linear-gradient(145deg, #0b111e 0%, rgba(59, 130, 246, 0.03) 100%);
+    --skill-border: rgba(255, 255, 255, 0.1);
+    --avatar-bg: #151d2a;
+  }
 
+  // MODO CLARO PREMIUM (Evita o branco puro agressivo, constrói camadas de profundidade)
+  :global(body[data-theme="light"]) & {
+    --bg-principal: #f4f6f9; // Cinza azulado sutil que gera conforto visual
+    --bg-card: #ffffff;     // Cards brancos saltando aos olhos sobre o fundo
+    --bg-sub-box: #f8fafc;  // Caixas internas ligeiramente diferenciadas do card
+    --border-color: rgba(0, 0, 0, 0.06);
+    --border-sub-box: rgba(0, 0, 0, 0.04);
+    --text-main: #0f172a;   // Slate-900 (Grafite escuro e elegante para leitura nítida)
+    --text-muted: #475569;  // Slate-600 para descrições, subtextos e listas
+    --shadow-main: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    --shadow-inset: inset 0 1px 0px rgba(255, 255, 255, 0.9);
+    --teaser-gradient: linear-gradient(145deg, #ffffff 0%, rgba(59, 130, 246, 0.04) 100%);
+    --skill-border: rgba(0, 0, 0, 0.08);
+    --avatar-bg: #e2e8f0;
+  }
+
+  // Aplicação da estrutura base da Home
+  background: var(--bg-principal) !important;
+  background-color: var(--bg-principal) !important;
+  color: var(--text-main) !important;
+  min-height: 100vh !important;
+  width: 100% !important;
+  display: block !important;
+  overflow-x: hidden;
+  padding: 60px 0;
+  transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CLASSES UTILITÁRIAS DINÂMICAS (Conectadas ao novo JSX) */
+.dynamicTitle {
+  color: var(--text-main) !important;
+  transition: color 0.4s ease;
+}
+
+.mutedText {
+  color: var(--text-muted) !important;
+  transition: color 0.4s ease;
+  
+  // Garante que tags filhas herdem a cor perfeitamente
+  li, span, p {
+    color: var(--text-muted) !important;
+  }
+}
+
+
+/* ==========================================================================
+   2. ESTILOS DO CARD: CARD DE PERFIL / APRESENTAÇÃO
+   ========================================================================== */
 .profileCard {
-  // Define o fundo escuro e a borda sutil customizada para o Card de Perfil
-  background-color: $dark-bg-card !important;
-  border-color: rgba($text-secondary, 0.2) !important;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 24px !important; 
+  box-shadow: var(--shadow-main), var(--shadow-inset) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba($primary, 0.25) !important;
+    :global(body[data-theme="light"]) & {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08);
+    }
+  }
 }
 
 .avatarWrapper {
@@ -17,7 +90,6 @@
   display: inline-block;
   margin: 0 auto 1.5rem auto;
 
-  // Efeito de brilho em blur (fundo brilhante sutil) atrás da foto de perfil
   &::before {
     content: '';
     position: absolute;
@@ -30,26 +102,28 @@
     filter: blur(10px);
   }
 
-  // Estilização da imagem do avatar dentro do Card de Perfil
   img {
     width: 210px; 
     height: 210px; 
     object-fit: cover;
     border-radius: 12px;
-    border: 1px solid rgba($text-secondary, 0.2);
+    border: 1px solid var(--border-color);
     padding: 0.25rem;
-    background-color: #151d2a;
+    background-color: var(--avatar-bg);
     position: relative;
     z-index: 1;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+    
+    :global(body[data-theme="dark"]) & { box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); }
+    :global(body[data-theme="light"]) & { box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06); }
   }
 }
 
-// Animação Typewriter Cadenciada (Efeito de digitação no título do perfil)
 .typewriter {
   display: inline-block;
   color: $primary;
   font-weight: 700;
-  border-right: 3px solid $primary; // Cursor piscante
+  border-right: 3px solid $primary; 
   white-space: nowrap;
   overflow: hidden;
   margin: 0 auto;
@@ -68,13 +142,14 @@
   50% { border-color: $primary }
 }
 
-// Bloco de texto da Bio (com efeito estilizado de aspas decorativas)
 .bioText {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: rgba($text-secondary, 0.8);
   font-style: italic;
   position: relative;
+  
+  :global(body[data-theme="dark"]) & { color: rgba(255, 255, 255, 0.7) !important; }
+  :global(body[data-theme="light"]) & { color: var(--text-muted) !important; }
   
   &::before {
     content: '"';
@@ -87,10 +162,10 @@
   }
 }
 
-// Container de métricas (Anos de experiência e quantidade de Projetos)
 .statsContainer {
-  border-top: 1px solid rgba($text-secondary, 0.15);
-  border-bottom: 1px solid rgba($text-secondary, 0.15);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.4s ease;
 
   span {
     font-size: 0.65rem;
@@ -98,12 +173,11 @@
   }
 }
 
-// Linha divisória interna das métricas do perfil
 .divider {
-  border-right: 1px solid rgba($text-secondary, 0.15);
+  border-right: 1px solid var(--border-color);
+  transition: border-color 0.4s ease;
 }
 
-// Ícones das Redes Sociais no rodapé do Card de Perfil
 .socialIcon {
   display: flex;
   align-items: center;
@@ -111,16 +185,15 @@
   width: 42px;
   height: 42px;
   border-radius: 8px;
-  background-color: rgba(#000, 0.2);
-  color: rgba($text-secondary, 0.8);
+  background-color: var(--bg-sub-box);
+  color: var(--text-muted) !important;
   font-size: 1.25rem;
   transition: all 0.3s ease;
-  border: 1px solid rgba($text-secondary, 0.15);
+  border: 1px solid var(--border-color);
   text-decoration: none;
 
-  // Efeito de hover interativo com feedback visual e leve subida
   &:hover {
-    color: $primary;
+    color: $primary !important;
     background-color: rgba($primary, 0.1);
     border-color: rgba($primary, 0.4);
     transform: translateY(-3px);
@@ -129,25 +202,29 @@
 
 
 /* ==========================================================================
-   ESTILOS GERAIS PARA OS CARDS DE CONTEÚDO
-   Aplica-se à base dos Cards de Experiência, Habilidades e Formação.
-   ========================================================================== */
-
+   3. ESTILOS GERAIS PARA OS CARDS DE CONTEÚDO (ACORDIONS)
+   ========================================================================= */
 .contentCard {
-  background-color: $dark-bg-card !important;
-  border-color: rgba($text-secondary, 0.2) !important;
+  background-color: var(--bg-card) !important; 
+  border: 1px solid var(--border-color) !important;
+  border-radius: 24px !important; 
+  box-shadow: var(--shadow-main), var(--shadow-inset) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: rgba($primary, 0.25) !important;
+  }
 }
 
-// Títulos das seções presentes no topo de cada Card de Conteúdo
 .sectionTitle {
-  color: rgba($text-secondary, 0.6);
+  color: $primary !important; 
   text-transform: uppercase;
   font-weight: 700;
   font-size: 0.75rem;
   letter-spacing: 1px;
 }
 
-// Botão de colapso/sanfona que recolhe o conteúdo interno dos Cards
 .sectionToggleBtn {
   background: transparent !important;
   border: none !important;
@@ -163,9 +240,12 @@
     width: 1.25rem !important;
     height: 1.25rem !important;
     transition: transform 0.2s ease-in-out !important;
+    
+    :global(body[data-theme="light"]) & {
+      filter: brightness(0.1); // Torna a setinha do accordion escura e visível no modo claro
+    }
   }
 
-  // Gira o ícone quando o Card estiver expandido (Bootstrap Collapse)
   &:not(:global(.collapsed))::after {
     transform: rotate(-180deg) !important;
   }
@@ -173,34 +253,45 @@
 
 
 /* ==========================================================================
-   ESTILOS ESPECÍFICOS DO CARD DE HABILIDADES
+   4. ESTILOS ESPECÍFICOS DO CARD DE HABILIDADES
    ========================================================================== */
-
 .skillSubtitle {
-  color: $primary;
+  color: $primary !important;
   font-weight: 700;
   font-size: 0.85rem;
   margin-bottom: 1rem;
 }
 
+.skillColBorder {
+  border-right: 1px solid var(--skill-border);
+  transition: border-color 0.4s ease;
+
+  @media (max-width: 767.98px) {
+    border-right: none;
+    border-bottom: 1px solid var(--skill-border);
+    padding-bottom: 1.5rem;
+  }
+}
+
 
 /* ==========================================================================
-   ESTILOS ESPECÍFICOS DO CARD DE FORMAÇÃO ACADÊMICA
+   5. ESTILOS ESPECÍFICOS DO CARD DE FORMAÇÃO ACADÊMICA
    ========================================================================== */
-
-// Estrutura interna para organizar os blocos de cursos/instituições
 .educationBox {
   padding: 1rem;
   border-radius: 8px;
-  border: 1px solid rgba($text-secondary, 0.15);
-  background-color: rgba(#000, 0.15);
+  border: 1px solid var(--border-sub-box);
+  background-color: var(--bg-sub-box);
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 1rem;
+  transition: all 0.4s ease;
+  
+  :global(body[data-theme="dark"]) & { box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5); }
+  :global(body[data-theme="light"]) & { box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.01); }
 
-  // Responsividade: Alinha os dados verticalmente em telas menores (Mobile)
   @media (max-width: 767.98px) {
     flex-direction: column;
     align-items: flex-start;
@@ -213,31 +304,29 @@
   }
 }
 
-// Badge de período (ex: 2026 - 2030) dentro do card de formação
 .dateBadge {
-  border: 1px solid rgba($text-secondary, 0.2);
-  color: rgba($text-secondary, 0.6);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted) !important;
   padding: 0.4rem 0.75rem;
-  background-color: rgba(#000, 0.2);
+  background-color: var(--bg-card);
   border-radius: 6px;
   font-size: 0.75rem;
+  transition: all 0.4s ease;
 }
 
 
 /* ==========================================================================
-   ESTILOS DO CARD TEASER (GATILHO DE CURIOSIDADE / CALL TO ACTION)
-   Sua função é quebrar a monotonia visual com um gradiente luminoso,
-   chamando a atenção do usuário para clicar no botão "Minha História".
+   6. ESTILOS DO CARD TEASER (CALL TO ACTION / MINHA HISTÓRIA)
    ========================================================================== */
-
 .teaserCard {
-  // Gradiente linear sutil injetando a cor primária no canto inferior direito
-  background: linear-gradient(145deg, $dark-bg-card 0%, rgba($primary, 0.05) 100%) !important;
-  border-color: rgba($primary, 0.25) !important;
+  background: var(--teaser-gradient) !important;
+  border: 1px solid rgba($primary, 0.2) !important;
+  border-radius: 24px !important;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-main) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-  // Detalhe visual: Barra vertical na lateral esquerda do Card Teaser
   &::before {
     content: '';
     position: absolute;
@@ -246,23 +335,31 @@
     width: 4px;
     height: 100%;
     background-color: $primary;
+    box-shadow: 0 0 15px rgba($primary, 0.5); 
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    border-color: rgba($primary, 0.4) !important;
   }
 }
 
-// Botão interativo do Card Teaser (Link que leva para "/sobre-mim")
 .teaserBtn {
   border-radius: 6px;
   transition: all 0.3s ease;
   white-space: nowrap;
+  border: 1px solid $primary !important;
+  color: $primary !important;
+  background: transparent;
 
   i {
     transition: transform 0.3s ease;
   }
 
-  // Efeito ao passar o mouse: Preenche o botão e joga a seta para a direita
   &:hover {
-    background-color: $primary;
-    color: #000;
+    background-color: $primary !important;
+    color: #000000 !important;
+    box-shadow: 0 0 20px rgba($primary, 0.4);
     
     i {
       transform: translateX(4px);

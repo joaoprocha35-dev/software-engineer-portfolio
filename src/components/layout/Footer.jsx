@@ -1,18 +1,18 @@
+import React from 'react';
+import styles from './Footer.module.scss'; // Criado para o controle fino de tema
+
 function Footer() {
-  // Capturo o ano atual dinamicamente em JavaScript para evitar manutenção manual futura.
   const currentYear = new Date().getFullYear();
 
   return (
-    // 'mt-auto' garante que o rodapé seja empurrado para o final da página se o conteúdo for curto.
-    // 'border-top' e 'border-secondary' mantêm a mesma linha sutil de separação que usamos na Navbar.
-    <footer className="bg-dark text-muted py-4 mt-auto border-top border-secondary">
+    <footer className={`py-4 mt-auto ${styles.footerCustom}`}>
       <div className="container">
         <div className="row align-items-center justify-content-between g-3">
           
           {/* DIREITOS AUTORAIS */}
           <div className="col-12 col-md-auto text-center text-md-start">
             <p className="mb-0 small fw-medium">
-              &copy; {currentYear} <span className="text-white fw-bold">João Pedro</span>. Todos os direitos reservados.
+              &copy; {currentYear} <span className={styles.footerBrand}>João Pedro</span>. Todos os direitos reservados.
             </p>
           </div>
 

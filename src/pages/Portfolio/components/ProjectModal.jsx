@@ -1,25 +1,21 @@
 import styles from '../Portfolio.module.scss';
 
 /**
- * Componente de Modal que simula um Notebook físico.
- * @param {Object} project - O projeto selecionado para exibição.
- * @param {boolean} isOpen - Estado de visibilidade do modal.
- * @param {Function} onClose - Função para fechar o modal.
+ * Componente de Modal que simula um Notebook físico com suporte a temas.
  */
 const ProjectModal = ({ project, isOpen, onClose }) => {
   if (!isOpen || !project) return null;
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      {/* Paramos a propagação do clique para o modal não fechar ao clicar dentro dele */}
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         
-        {/* Botão de Fechar fixado no container principal */}
+        {/* Botão de Fechar */}
         <button className={styles.closeButton} onClick={onClose} aria-label="Fechar modal">
           &times;
         </button>
 
-        {/* --- ESTRUTURA DO NOTEBOOK CSS --- */}
+        {/* ESTRUTURA DO NOTEBOOK CSS */}
         <div className={styles.notebookContainer}>
           <div className={styles.notebookScreen}>
             <div className={styles.screenContent}>
@@ -32,7 +28,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* --- INFORMAÇÕES DO PROJETO --- */}
+        {/* INFORMAÇÕES DO PROJETO */}
         <div className={styles.projectInfo}>
           <div className={styles.headerInfo}>
             <span className={styles.category}>{project.category}</span>
@@ -63,7 +59,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               Ver Código (GitHub)
             </a>
             
-            {/* 🚀 RENDERIZAÇÃO CONDICIONAL SÊNIOR: O botão só existe se houver um link válido */}
             {project.liveDemoUrl && project.liveDemoUrl.trim() !== "" && (
               <a 
                 href={project.liveDemoUrl} 

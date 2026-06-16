@@ -1,35 +1,90 @@
 @use '../../styles/variables' as *;
 
 .navContainer {
-  background-color: #0b111e !important; // Mantém o fundo escuro do seu layout
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  
+  // Mapeamento dinâmico baseado no estado do Body
+  :global(body[data-theme="dark"]) & {
+    background-color: #0b111e !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  :global(body[data-theme="light"]) & {
+    background-color: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
 }
 
-// Estilo dos Links de Navegação (Páginas)
+.logoLink {
+  transition: color 0.4s ease;
+  :global(body[data-theme="dark"]) & { color: #ffffff !important; }
+  :global(body[data-theme="light"]) & { color: #1f2937 !important; }
+}
+
 .navLinkCustom {
   font-size: 0.95rem;
-  color: #a0aec0 !important; 
   padding: 0.6rem 1rem !important;
   border-radius: 4px;
   transition: all 0.2s ease-in-out;
 
-  &:hover {
-    color: $primary !important;
-    background-color: rgba($primary, 0.08);
+  :global(body[data-theme="dark"]) & {
+    color: #a0aec0 !important;
+    &:hover {
+      color: $primary !important;
+      background-color: rgba($primary, 0.08);
+    }
+    &:global(.active) {
+      color: #ffffff !important;
+      background-color: rgba($primary, 0.15) !important;
+      font-weight: 600;
+    }
   }
 
-  &:global(.active) {
-    color: #ffffff !important;
-    background-color: rgba($primary, 0.15) !important;
-    font-weight: 600;
+  :global(body[data-theme="light"]) & {
+    color: #4b5563 !important;
+    &:hover {
+      color: $primary !important;
+      background-color: rgba($primary, 0.06);
+    }
+    &:global(.active) {
+      color: $primary !important;
+      background-color: rgba($primary, 0.1) !important;
+      font-weight: 600;
+    }
   }
 }
 
-/* ==========================================================================
-   Ajuste Fino do Sininho (Ícone Branco + Balão Vermelho Corrigido)
-   ========================================================================== */
+/* ALTERNADOR DE TEMA */
+.themeToggleBtn {
+  background: transparent !important;
+  border: none !important;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
 
-// Botão invisível de notificações
+  i {
+    font-size: 1.25rem;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  :global(body[data-theme="dark"]) & {
+    &:hover { background-color: rgba(255, 255, 255, 0.05); }
+  }
+  :global(body[data-theme="light"]) & {
+    &:hover { background-color: rgba(0, 0, 0, 0.05); }
+  }
+}
+
+/* SININHO DE NOTIFICAÇÕES */
 .notifBtn {
   background: transparent !important;
   border: none !important;
@@ -38,46 +93,67 @@
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  position: relative !important; // Crucial para o absolute do badge funcionar relativamente a ele
+  position: relative !important;
   cursor: pointer;
 
-  // Garante que o sininho apareça em BRANCO e com tamanho correto
   i {
-    color: #ffffff !important; // Mudado para branco puro
-    font-size: 1.3rem !important; // Tamanho ideal para visualização rápida
+    font-size: 1.25rem !important;
     display: inline-block;
     line-height: 1;
+    transition: color 0.4s ease;
+
+    :global(body[data-theme="dark"]) & { color: #ffffff !important; }
+    :global(body[data-theme="light"]) & { color: #4b5563 !important; }
   }
 }
 
-// Balão Vermelho "99+" com posicionamento cirúrgico
 .badgeCustom {
-  background-color: #ef4444 !important; // Vermelho vivo idêntico ao print
+  background-color: #ef4444 !important;
   color: #ffffff !important;
   font-size: 0.6rem !important;
   font-weight: 700 !important;
   padding: 0.15rem 0.3rem !important;
-  border: 2px solid #0b111e !important; // Borda de recorte para não misturar com o sino
   border-radius: 50rem !important;
-  
-  // Posicionamento absoluto travado exatamente acima do ombro direito do sino
   position: absolute !important;
-  top: 0px !important;
-  right: -2px !important;
+  top: 2px !important;
+  right: 0px !important;
   transform: translate(10%, -20%) !important;
+  transition: border-color 0.4s ease;
+
+  :global(body[data-theme="dark"]) & { border: 2px solid #0b111e !important; }
+  :global(body[data-theme="light"]) & { border: 2px solid #ffffff !important; }
 }
 
-// Menu Dropdown das Notificações
 .dropdownMenuCustom {
-  background-color: #111827 !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.4s ease;
 
-  :global(.dropdown-item) {
-    color: #e2e8f0 !important;
-    &:hover {
-      background-color: rgba($primary, 0.15) !important;
-      color: $primary !important;
+  :global(body[data-theme="dark"]) & {
+    background-color: #111827 !important;
+    :global(.dropdown-item) {
+      color: #e2e8f0 !important;
+      &:hover { background-color: rgba($primary, 0.15) !important; color: $primary !important; }
     }
+  }
+
+  :global(body[data-theme="light"]) & {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    :global(.dropdown-item) {
+      color: #1f2937 !important;
+      &:hover { background-color: rgba($primary, 0.08) !important; color: $primary !important; }
+    }
+  }
+}
+
+.dropdownHeaderCustom {
+  :global(body[data-theme="dark"]) & { color: #6b7280 !important; border-color: rgba(255, 255, 255, 0.1) !important; }
+  :global(body[data-theme="light"]) & { color: #9ca3af !important; border-color: rgba(0, 0, 0, 0.08) !important; }
+}
+
+.hamburgerCustom {
+  :global(body[data-theme="light"]) & {
+    filter: invert(1); // Converte o ícone hamburguer padrão para preto no modo claro
   }
 }

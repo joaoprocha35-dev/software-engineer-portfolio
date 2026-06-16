@@ -1,0 +1,23 @@
+@use '../../styles/variables' as *;
+
+.footerCustom {
+  transition: all 0.4s ease;
+
+  :global(body[data-theme="dark"]) & {
+    background-color: #0b111e !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  :global(body[data-theme="light"]) & {
+    background-color: #ffffff !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    color: #6b7280 !important;
+  }
+}
+
+.footerBrand {
+  transition: color 0.4s ease;
+  :global(body[data-theme="dark"]) & { color: #ffffff; }
+  :global(body[data-theme="light"]) & { color: #1f2937; }
+}

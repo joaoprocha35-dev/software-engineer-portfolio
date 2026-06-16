@@ -1,225 +1,206 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; // Importado para fazer a navegação do card teaser
+import { Link } from 'react-router-dom';
 import profileImg from '../../assets/profile.jpg';
 import styles from './Home.module.scss';
 
 /**
  * Componente Home
- * Apresenta a página principal do portfólio/currículo do desenvolvedor.
- * Organizado em uma estrutura de Grid do Bootstrap com uma barra lateral de perfil
- * e uma seção principal de conteúdo dividida em múltiplos Cards funcionais.
+ * Apresenta a página principal do portfólio de forma totalmente responsiva
+ * e adaptável a chaveamentos dinâmicos de Light/Dark Mode.
  */
 function Home() {
   return (
-    <div className="container pt-5 mt-4 mt-lg-0 py-5">
-      <div className="row g-4">
-        
-        {/* SIDEBAR DO PERFIL */}
-        <aside className="col-lg-4" data-aos="fade-right">
+    /* CONTAINER RAIZ: Vinculado ao sistema dinâmico de fundos */
+    <section className={styles.homeContainer}>
+      <div className="container pt-5 mt-4 mt-lg-0 py-5">
+        <div className="row g-4">
           
-          {/* FUNÇÃO DO CARD: CARD DE PERFIL / APRESENTAÇÃO
-             Este card atua como o cartão de visitas estático do profissional.
-             Sua função é centralizar a imagem de avatar, o nome principal (substituindo o antigo cargo), 
-             a biografia resumida, métricas de carreira (anos e projetos) e links diretos para redes sociais.
-          */}
-          <div className={`card p-4 text-center ${styles.profileCard}`}>
-            <div className={styles.avatarWrapper}>
-              <img src={profileImg} alt="João Pedro" className="img-fluid" />
-            </div>
-
-            <div className="card-body p-0">
-              {/* Box do Nome Principal */}
-              <div className="mb-2" style={{ minHeight: '30px' }}>
-                <span className={styles.typewriter}>João Pedro Rocha</span>
-              </div>
-              
-              <div className="mt-3">
-                <p className={styles.bioText}>
-                  Acredito que a tecnologia só faz sentido quando serve para diminuir distâncias entre o problema e a solução humana. Meu foco é construir arquiteturas que não apenas funcionem, mas que facilitem a vida de quem as opera.
-                </p>
-                <p className="text-muted small">
-                  Em constante evolução na Arquitetura de Sistemas, buscando o equilíbrio entre código limpo e regras de negócio eficientes.
-                </p>
-              </div>
-              
-              <div className={`d-flex justify-content-center gap-4 mb-4 py-2 ${styles.statsContainer}`}>
-                <div>
-                  <h5 className="text-white fw-bold mb-0">1.6</h5>
-                  <span className="text-muted text-uppercase fw-bold">Anos</span>
-                </div>
-                <div className={styles.divider}></div>
-                <div>
-                  <h5 className="text-white fw-bold mb-0">10</h5>
-                  <span className="text-muted text-uppercase fw-bold">Projetos</span>
-                </div>
-              </div>
-
-              {/* Redes Sociais do Perfil */}
-              <div className="d-flex justify-content-center gap-3">
-                <a href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
-                  <i className="bi bi-linkedin"></i>
-                </a>
-                <a href="https://github.com/joaoprocha35-dev" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
-                  <i className="bi bi-github"></i>
-                </a>
-                <a href="https://www.instagram.com/ZX.rochaa" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
-                  <i className="bi bi-instagram"></i>
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </aside>
-
-        {/* CONTEÚDO PRINCIPAL */}
-        <main className="col-lg-8" data-aos="fade-left">
-          
-          {/* EXPERIÊNCIA PROFISSIONAL */}
-          {/* FUNÇÃO DO CARD: CARD DE EXPERIÊNCIAS
-             Sua função é expor o histórico profissional de forma cronológica ou por relevância.
-             Possui comportamento dinâmico de sanfona (accordion/collapse) controlado por um botão, 
-             permitindo ao usuário ocultar ou exibir a lista de projetos ativos desenvolvidos.
-          */}
-          <section className={`card p-4 mb-4 ${styles.contentCard}`}>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <span className={styles.sectionTitle}>Experiência Profissional</span>
-              <button 
-                className={`accordion-button ${styles.sectionToggleBtn}`} 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#collapseExp"
-                aria-expanded="true"
-              ></button>
-            </div>
+          {/* SIDEBAR DO PERFIL */}
+          <aside className="col-lg-4" data-aos="fade-right">
             
-            <div className="collapse show" id="collapseExp">
-              <div className="pt-2">
-                <div className="mb-0">
-                  <h4 className="text-white fw-bold mb-1 fs-5 d-flex align-items-center">
-                    <i className="bi bi-circle-fill text-primary me-2" style={{ fontSize: '0.65rem' }}></i> 
-                    Site - Instituição Missionária
-                  </h4>
-                  <p className="text-muted small ms-4 mb-0">
-                    Desenvolvimento de plataforma digital para transição de presença social (Instagram) para ecossistema web próprio. O objective central foi a profissionalização da divulgação missionária, pavimentando o caminho para a implementação de um e-commerce em 2027.
+            {/* CARD DE PERFIL / APRESENTAÇÃO */}
+            <div className={`card p-4 text-center ${styles.profileCard}`}>
+              <div className={styles.avatarWrapper}>
+                <img src={profileImg} alt="João Pedro" className="img-fluid" />
+              </div>
+
+              <div className="card-body p-0">
+                {/* Box do Nome Principal com Efeito Teclado */}
+                <div className="mb-2" style={{ minHeight: '30px' }}>
+                  <span className={styles.typewriter}>João Pedro Rocha</span>
+                </div>
+                
+                <div className="mt-3">
+                  <p className={styles.bioText}>
+                    Acredito que a tecnologia só faz sentido quando serve para diminuir distâncias entre o problema e a solução humana. Meu foco foi construir arquiteturas que não apenas funcionem, mas que facilitem a vida de quem as opera.
+                  </p>
+                  <p className={`${styles.mutedText} small`}>
+                    Em constante evolução na Arquitetura de Sistemas, buscando o equilíbrio entre código limpo e regras de negócio eficientes.
                   </p>
                 </div>
+                
+                {/* Métrica de Experiência (Anos / Projetos) */}
+                <div className={`d-flex justify-content-center gap-4 mb-4 py-2 ${styles.statsContainer}`}>
+                  <div>
+                    <h5 className={`${styles.dynamicTitle} fw-bold mb-0`}>1.6</h5>
+                    <span className={`${styles.mutedText} text-uppercase fw-bold`}>Anos</span>
+                  </div>
+                  <div className={styles.divider}></div>
+                  <div>
+                    <h5 className={`${styles.dynamicTitle} fw-bold mb-0`}>10</h5>
+                    <span className={`${styles.mutedText} text-uppercase fw-bold`}>Projetos</span>
+                  </div>
+                </div>
+
+                {/* Redes Sociais do Perfil */}
+                <div className="d-flex justify-content-center gap-3">
+                  <a href="https://www.linkedin.com/in/delmiro-rocha-b668043b0/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="LinkedIn">
+                    <i className="bi bi-linkedin"></i>
+                  </a>
+                  <a href="https://github.com/joaoprocha35-dev" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="GitHub">
+                    <i className="bi bi-github"></i>
+                  </a>
+                  <a href="https://www.instagram.com/ZX.rochaa" target="_blank" rel="noopener noreferrer" className={styles.socialIcon} aria-label="Instagram">
+                    <i className="bi bi-instagram"></i>
+                  </a>
+                </div>
+
               </div>
             </div>
-          </section>
+          </aside>
 
-          {/* HABILIDADES */}
-          {/* FUNÇÃO DO CARD: CARD DE HABILIDADES (SKILLS)
-             Tem a função técnica de categorizar o conhecimento do desenvolvedor.
-             Divide o espaço interno em duas colunas organizadas: uma para competências comportamentais 
-             (Soft Skills) e outra para competências técnicas (Hard Skills), ferramentas e arquiteturas de código.
-             Também suporta recolhimento via Bootstrap collapse.
-          */}
-          <section className={`card p-4 mb-4 ${styles.contentCard}`}>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <span className={styles.sectionTitle}>Habilidades</span>
-              <button 
-                className={`accordion-button ${styles.sectionToggleBtn}`} 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#collapseSkills"
-                aria-expanded="true"
-              ></button>
-            </div>
-
-            <div className="collapse show" id="collapseSkills">
-              <div className="row pt-2 g-3">
-                <div className="col-md-6 border-end border-secondary">
-                  <h5 className={styles.skillSubtitle}>Soft Skills</h5>
-                  <ul className="text-muted small list-unstyled ms-2">
-                    <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Capacidade em trabalhar em equipe</li>
-                    <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Comunicativo</li>
-                    <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Escuta ativa</li>
-                    <li className="mb-0"><i className="bi bi-check2-circle text-primary me-2"></i>Tomada de decisão</li>
-                    <li className="mb-1 mt-1"><i className="bi bi-check2-circle text-primary me-2"></i>Adaptação</li>
-                  </ul>
+          {/* CONTEÚDO PRINCIPAL (ACORDIONS) */}
+          <main className="col-lg-8" data-aos="fade-left">
+            
+            {/* EXPERIÊNCIA PROFISSIONAL */}
+            <section className={`card p-4 mb-4 ${styles.contentCard}`}>
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <span className={styles.sectionTitle}>Experiência Profissional</span>
+                <button 
+                  className={`accordion-button ${styles.sectionToggleBtn}`} 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseExp"
+                  aria-expanded="true"
+                ></button>
+              </div>
+              
+              <div className="collapse show" id="collapseExp">
+                <div className="pt-2">
+                  <div className="mb-0">
+                    <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-5 d-flex align-items-center`}>
+                      <i className="bi bi-circle-fill text-primary me-2" style={{ fontSize: '0.65rem' }}></i> 
+                      Site - Instituição Missionária
+                    </h4>
+                    <p className={`${styles.mutedText} small ms-4 mb-0`}>
+                      Desenvolvimento de plataforma digital para transição de presença social (Instagram) para ecossistema web próprio. O objetivo central foi a profissionalização da divulgação missionária, pavimentando o caminho para a implementação de um e-commerce em 2027.
+                    </p>
+                  </div>
                 </div>
-                <div className="col-md-6 ps-md-4">
-                  <h5 className={styles.skillSubtitle}>Hard Skills</h5>
-                  <p className="text-white small mb-2 fw-medium">Linguagens & Tecnologias:</p>
-                  <p className="text-muted small mb-3">HTML, CSS, JavaScript, React, Bootstrap</p>
+              </div>
+            </section>
+
+            {/* HABILIDADES */}
+            <section className={`card p-4 mb-4 ${styles.contentCard}`}>
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <span className={styles.sectionTitle}>Habilidades</span>
+                <button 
+                  className={`accordion-button ${styles.sectionToggleBtn}`} 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseSkills"
+                  aria-expanded="true"
+                ></button>
+              </div>
+
+              <div className="collapse show" id="collapseSkills">
+                <div className="row pt-2 g-3">
+                  {/* Soft Skills */}
+                  <div className={`col-md-6 ${styles.skillColBorder}`}>
+                    <h5 className={styles.skillSubtitle}>Soft Skills</h5>
+                    <ul className={`${styles.mutedText} small list-unstyled ms-2`}>
+                      <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Capacidade em trabalhar em equipe</li>
+                      <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Comunicativo</li>
+                      <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Escuta ativa</li>
+                      <li className="mb-2"><i className="bi bi-check2-circle text-primary me-2"></i>Tomada de decisão</li>
+                      <li className="mb-0"><i className="bi bi-check2-circle text-primary me-2"></i>Adaptação</li>
+                    </ul>
+                  </div>
                   
-                  <p className="text-white small mb-1 fw-medium">Competências Adicionais:</p>
-                  <p className="text-muted small mb-1">• Prototipagem de Interfaces (Nível Intermediário)</p>
-                  <p className="text-muted small mb-1">• Engenharia de Prompts & Ferramentas de IA (Intermediário)</p>
-                  <p className="text-muted small mb-1">• Arquitetura Clean Code & Organização de Diretórios Escalonáveis (Nível Intermediário)</p>
-                  <p className="text-muted small mb-1">• Bancos de Dados: MySQL Workbench (Fundamentos)</p>
-                  <p className="text-muted small mb-0">• Regras de Negócio & Lógica de Sistemas (Nível Intermediário)</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* FORMAÇÃO ACADÊMICA E TÉCNICA */}
-          {/* FUNÇÃO DO CARD: CARD DE FORMAÇÃO ACADÊMICA
-             Sua função é comprovar o embasamento teórico e técnico do desenvolvedor.
-             Renderiza caixas internas de layout (educationBox) que destacam o grau acadêmico,
-             instituições de ensino (Unifatecie e SENAI) acompanhadas por badges de data de início e conclusão prevista.
-          */}
-          <section className={`card p-4 mb-4 ${styles.contentCard}`}>
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <span className={styles.sectionTitle}>Formação Acadêmica & Técnica</span>
-              <button 
-                className={`accordion-button ${styles.sectionToggleBtn}`} 
-                type="button" 
-                data-bs-toggle="collapse" 
-                data-bs-target="#collapseEdu"
-                aria-expanded="true"
-              ></button>
-            </div>
-
-            <div className="collapse show" id="collapseEdu">
-              <div className="pt-2">
-                <div className={`${styles.educationBox} mb-3`}>
-                  <div>
-                    <h4 className="text-white fw-bold mb-1 fs-6">Engenharia de Software (Bacharelado)</h4>
-                    <p className="text-muted small mb-0">Unifatecie - EAD</p>
+                  {/* Hard Skills */}
+                  <div className="col-md-6 ps-md-4">
+                    <h5 className={styles.skillSubtitle}>Hard Skills</h5>
+                    <p className={`${styles.dynamicTitle} small mb-2 fw-medium`}>Linguagens & Tecnologias:</p>
+                    <p className={`${styles.mutedText} small mb-3`}>HTML, CSS, JavaScript, React, Bootstrap</p>
+                    
+                    <p className={`${styles.dynamicTitle} small mb-1 fw-medium`}>Competências Adicionais:</p>
+                    <p className={`${styles.mutedText} small mb-1`}>• Prototipagem de Interfaces (Nível Intermediário)</p>
+                    <p className={`${styles.mutedText} small mb-1`}>• Engenharia de Prompts & Ferramentas de IA (Intermediário)</p>
+                    <p className={`${styles.mutedText} small mb-1`}>• Arquitetura Clean Code & Organização de Diretórios Escalonáveis (Nível Intermediário)</p>
+                    <p className={`${styles.mutedText} small mb-1`}>• Bancos de Dados: MySQL Workbench (Fundamentos)</p>
+                    <p className={`${styles.mutedText} small mb-0`}>• Regras de Negócio & Lógica de Sistemas (Nível Intermediário)</p>
                   </div>
-                  <span className={styles.dateBadge}>2026 - 2030 (Em formação)</span>
                 </div>
-                <div className={styles.educationBox}>
-                  <div>
-                    <h4 className="text-white fw-bold mb-1 fs-6">Análise e Desenvolvimento de Sistemas (SENAI)</h4>
-                    <p className="text-muted small mb-0">Formação - Curso Técnico</p>
+              </div>
+            </section>
+
+            {/* FORMAÇÃO ACADÊMICA E TÉCNICA */}
+            <section className={`card p-4 mb-4 ${styles.contentCard}`}>
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <span className={styles.sectionTitle}>Formação Acadêmica & Técnica</span>
+                <button 
+                  className={`accordion-button ${styles.sectionToggleBtn}`} 
+                  type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#collapseEdu"
+                  aria-expanded="true"
+                ></button>
+              </div>
+
+              <div className="collapse show" id="collapseEdu">
+                <div className="pt-2">
+                  <div className={`${styles.educationBox} mb-3`}>
+                    <div>
+                      <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-6`}>Engenharia de Software (Bacharelado)</h4>
+                      <p className={`${styles.mutedText} small mb-0`}>Unifatecie - EAD</p>
+                    </div>
+                    <span className={styles.dateBadge}>2026 - 2030 (Em formação)</span>
                   </div>
-                  <span className={styles.dateBadge}>2025 - 2026 (Em formação)</span>
+                  <div className={styles.educationBox}>
+                    <div>
+                      <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-6`}>Análise e Desenvolvimento de Sistemas (SENAI)</h4>
+                      <p className={`${styles.mutedText} small mb-0`}>Formação - Curso Técnico</p>
+                    </div>
+                    <span className={styles.dateBadge}>2025 - 2026 (Em formação)</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          {/* GATILHO DE CURIOSIDADE */}
-          {/* FUNÇÃO DO CARD: CARD TEASER (GATILHO DE CURIOSIDADE / CTA)
-             Diferente dos outros cards de exibição estática, este possui uma função estritamente de engajamento e conversão.
-             Ele serve como um "Call To Action" (Chamada para Ação), instigando a curiosidade do visitante a sair 
-             da página Home e navegar para a rota interna "/sobre-mim" utilizando o componente interativo `Link`.
-          */}
-          <section className={`card p-4 ${styles.teaserCard}`}>
-            <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
-              <div>
-                <h4 className="text-white fw-bold mb-2 fs-5">
-                  <i className="bi bi-rocket-takeoff text-primary me-2"></i>
-                  Além das linhas de código...
-                </h4>
-                <p className="text-muted small mb-0">
-                  Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquiteturas eficientes.
-                </p>
+            {/* CALL TO ACTION (TEASER) */}
+            <section className={`card p-4 ${styles.teaserCard}`}>
+              <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-4">
+                <div>
+                  <h4 className={`${styles.dynamicTitle} fw-bold mb-2 fs-5`}>
+                    <i className="bi bi-rocket-takeoff text-primary me-2"></i>
+                    Além das linhas de código...
+                  </h4>
+                  <p className={`${styles.mutedText} small mb-0`}>
+                    Todo projeto tem um propósito, mas quem está por trás das soluções? Conheça minha trajetória, meus valores e o que me motiva a transformar problemas complexos em arquiteturas eficientes.
+                  </p>
+                </div>
+                <div className="flex-shrink-0">
+                  <Link to="/sobre-mim" className={`btn fw-bold px-4 py-2 ${styles.teaserBtn}`}>
+                    Minha História <i className="bi bi-arrow-right ms-2"></i>
+                  </Link>
+                </div>
               </div>
-              <div className="flex-shrink-0">
-                <Link to="/sobre-mim" className={`btn btn-outline-primary fw-bold px-4 py-2 ${styles.teaserBtn}`}>
-                  Minha História <i className="bi bi-arrow-right ms-2"></i>
-                </Link>
-              </div>
-            </div>
-          </section>
+            </section>
 
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
