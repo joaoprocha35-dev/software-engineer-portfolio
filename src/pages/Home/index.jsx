@@ -166,12 +166,29 @@ function Home() {
                     </div>
                     <span className={styles.dateBadge}>2026 - 2030 (Em formação)</span>
                   </div>
-                  <div className={styles.educationBox}>
+                  
+                  <div className={`${styles.educationBox} mb-3`}>
                     <div>
                       <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-6`}>Análise e Desenvolvimento de Sistemas (SENAI)</h4>
                       <p className={`${styles.mutedText} small mb-0`}>Formação - Curso Técnico</p>
                     </div>
                     <span className={styles.dateBadge}>2025 - 2026 (Em formação)</span>
+                  </div>
+
+                  <div className={`${styles.educationBox} mb-3`}>
+                    <div>
+                      <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-6`}>Design Thinking</h4>
+                      <p className={`${styles.mutedText} small mb-0`}>SENAI - Curso de Extensão (EAD)</p>
+                    </div>
+                    <span className={styles.dateBadge}>Concluído (2026)</span>
+                  </div>
+
+                  <div className={styles.educationBox}>
+                    <div>
+                      <h4 className={`${styles.dynamicTitle} fw-bold mb-1 fs-6`}>Cidadania Digital: O Uso Consciente da Internet</h4>
+                      <p className={`${styles.mutedText} small mb-0`}>SENAI - Curso de Extensão (EAD)</p>
+                    </div>
+                    <span className={styles.dateBadge}>Concluído (2026)</span>
                   </div>
                 </div>
               </div>
